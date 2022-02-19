@@ -12,7 +12,7 @@
     <?php
         include "functions.php";
 
-        $player = $_POST["player"] ?? null;//lê o valor informado na tela home.php
+        $player = $_POST["player"] ?? null;//lê o valor informado na tela index.php
 
         if ($player == 1){
             $_SESSION['player'] = 1;

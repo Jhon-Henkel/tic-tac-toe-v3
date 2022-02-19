@@ -12,9 +12,7 @@ function tabuleiro (): void {
 
     echo '<div class="background_grade" >
             <hr class="linha_horizontal">';
-
     $k = 0;
-
     for ($i = 0; $i <= 2; $i++) {
         for ($j = 0; $j <= 2; $j++) {
             $k++;
@@ -23,10 +21,8 @@ function tabuleiro (): void {
                       <button class="btn" type="submit">' .$_SESSION['j'][$i][$j].'</button>
                   </form>';
         }
-
     }
     echo '</div>';
-
 }//função para exibir o tabuleiro com as posições.
 
 function fim_jogo (): void {
@@ -67,12 +63,14 @@ function jogada_invalida (): void {
 }//javascript de jogada inválida.
 
 function jogadas_x_o (): void {
+    $form = $form??null;
     if ($_SESSION['x/o'] == 1){
-        echo "Clique no local para '<b><span class='x'>X</span></b>':</br>";//informa as jogadas de 'X'.
+        $form = 'X';
     }elseif ($_SESSION['x/o'] == 2) {
-        echo "Clique no local para '<b><span class='o'>O</span></b>':</br>";//informa as jogadas de 'O'.
-    }//informa as jogadas de 'X' e 'O'.
-}
+        $form = 'O';
+    }
+    echo "Clique no local para '<b><span class='".strtolower($form)."'>$form</span></b>':</br>";
+}//informa as jogadas de 'X' e 'O'.
 
 function jogada_ia (): void {
     if (($_SESSION['j'][0][1] == '<span class="x">X</span>' && $_SESSION['j'][0][0] == '<span class="x">X</span>' && $_SESSION['j'][0][2] == '<span class="x">X</span>')
