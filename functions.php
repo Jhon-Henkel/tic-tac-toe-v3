@@ -1,14 +1,5 @@
 <?php
 function tabuleiro (): void {
-    $form = $form ?? null;
-
-    if ($_SESSION['x/o'] == 1){
-        $form = 'X';
-    }elseif ($_SESSION['x/o'] == 2){
-        $form = 'O';
-    }elseif ($_SESSION['ia'] == 1) {
-        $form = 'X';
-    }
 
     echo '<div class="background_grade" >
             <hr class="linha_horizontal">';
@@ -17,9 +8,10 @@ function tabuleiro (): void {
         for ($j = 0; $j <= 2; $j++) {
             $k++;
             echo '<form class="btn" method="post" action="main.php">
-                      <input type="hidden" name="'.$form.'" value="' . $k . '">
+                      <input type="hidden" name="'.$_SESSION['form'].'" value="' . $k . '">
                       <button class="btn" type="submit">' .$_SESSION['j'][$i][$j].'</button>
-                  </form>';
+                  </form>
+            ';
         }
     }
     echo '</div>';
@@ -63,13 +55,19 @@ function jogada_invalida (): void {
 }//javascript de jogada inválida.
 
 function jogadas_x_o (): void {
-    $form = $form??null;
-    if ($_SESSION['x/o'] == 1){
-        $form = 'X';
-    }elseif ($_SESSION['x/o'] == 2) {
-        $form = 'O';
+    $_SESSION['form'] = $_SESSION['form'] ?? null;
+
+    if ($_SESSION['x/o'] == 1 || $_SESSION['ia'] == 1){
+        $_SESSION['form'] = 'X';
+    }elseif ($_SESSION['x/o'] == 2){
+        $_SESSION['form'] = 'O';
+    }else{
+        $_SESSION['form'] = null;
     }
-    echo "Clique no local para '<b><span class='".strtolower($form)."'>$form</span></b>':</br>";
+
+    if ($_SESSION['form'] == 'X' || $_SESSION['form'] == 'O') {
+        echo "Clique no local para '<b><span class='" . strtolower($_SESSION['form']) . "'>".$_SESSION['form']."</span></b>':</br>";
+    }
 }//informa as jogadas de 'X' e 'O'.
 
 function jogada_ia (): void {

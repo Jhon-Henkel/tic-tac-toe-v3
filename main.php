@@ -151,7 +151,23 @@
             $o = $_POST['O'] ?? null; //pega o valor digitado por 'O' no formulário.
             $_SESSION['deu_velha'] = $_SESSION['deu_velha'] ?? null;
             $_SESSION['x/o'] = $_SESSION['x/o'] ?? 1;//variável que faz a troca dos formulários de jogada.
-            $ia = $ia ?? 3;
+
+            /*for ($jx=1; $jx<9; $jx++){
+                if ($x == $jx) {
+                    for ($jc=0; $jc<2; $jc++){
+                        for ($jl=0; $jl<2; $jl++) {
+                            if ($_SESSION['j'][$jc][$jl] == '<span class="x">X</span>' || $_SESSION['j'][$jc][$jl] == '<span class="o">O</span>') {
+                                jogada_invalida();
+                            } elseif ($_SESSION['j'][$jc][$jl] == $jx) {
+                                $_SESSION['j'][$jc][$jl] = '<span class="x">X</span>';
+                                $_SESSION['deu_velha']++;
+                                $_SESSION['x/o'] = 2;
+                            }
+                        }
+                    }
+                }
+            }
+            echo 'jc = '.$jc.' jl = '.$jl.' jx= '.$jx;*/
 
             if ($x == 1) {
                 if ($_SESSION['j'][0][0] == '<span class="x">X</span>' || $_SESSION['j'][0][0] == '<span class="o">O</span>'){
