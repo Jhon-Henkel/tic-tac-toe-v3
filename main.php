@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="_css/estilo.css"/>
+    <link rel="shortcut icon" href="_css/tic-tac-toe.png" type="image/x-icon"/>
     <title>Jogo da velha</title>
 </head>
 
