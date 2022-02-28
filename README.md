@@ -1,19 +1,17 @@
 # Jogo-da-velha-V3
 
-Cópia do V2.
-
 --------------------------------------------------------
 Corrigir:
 
-  -Clique no menu
+  -ok-Clique no menu.
   
-  -Pop-up de jogada inválida
+     -Pop-up de jogada inválida deixando fundo branco.
   
 --------------------------------------------------------
 Fazer:
 
-  -Deixar o código mais limpo talves usando p POO.
-
-  -Colocar acesso por banco de dados.
-
-  -Multiplayer em maquinas diferentes.
+  -ok-Deixar o código mais limpo.
+  
+     -Colocar armazenamento de valores via banco de dados.
+     
+     -Multiplayer em maquinas diferentes.
