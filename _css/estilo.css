@@ -83,7 +83,7 @@ h1{
     margin-left: 166px;
 }
 
-.dificuldade{
+.vermelho{
     color: red;
     font-weight: bold;
 }
@@ -96,4 +96,24 @@ h1{
     height: 60px;
     background-color: transparent;
     border-color: transparent;
+}
+
+.inicio{
+    text-align: start;
+}
+
+.btn_start{
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 50px;
+    border-color: darkred;
+}
+
+.btn_reset{
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 50px;
+    border-color: midnightblue;
 }
