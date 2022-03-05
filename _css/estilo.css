@@ -7,7 +7,7 @@ html {
 }
 
 .conteudo::before {
-    content: "## Jogo da velha By Jhon ";
+    content: "## Jogo da velha By Jhon ##";
     font: 10pt Arial;
     font-weight: bold;
     color: white;

@@ -20,23 +20,23 @@
     <form class="center" method="post" action="main.php">
         <fieldset class="inicio">
             <legend>Como irá jogar?</legend>
-            <input type="radio" name="player" id="1" value="1" checked><label for="1">Sozinho</label>
-            <input type="radio" name="player" id="2" value="2"><label for="2">Acompanhado</label><br>
+            <input type="radio" name="p" id="1" value="1" checked><label for="1">Sozinho</label>
+            <input type="radio" name="p" id="2" value="2"><label for="2">Acompanhado</label><br>
         </fieldset><br>
 
         <fieldset class="inicio">
             <legend>Dificuldade modo solitário:</legend>
-            <input type="radio" name="dificuldade" id="3" value="1"><label for="3" title="Para crianças.">Extra-fácil</label>
-            <input type="radio" name="dificuldade" id="4" value="2"><label for="4" title="Para quem tem cérebro pequeno.">Fácil</label>
-            <input type="radio" name="dificuldade" id="5" value="3" checked><label for="5" title="Para quem sabe pensar.">Média</label>
+            <input type="radio" name="df" id="3" value="1"><label for="3" title="Para crianças.">Extra-fácil</label>
+            <input type="radio" name="df" id="4" value="2"><label for="4" title="Para pessoas desprovidas de inteligencia.">Fácil</label>
+            <input type="radio" name="df" id="5" value="3" checked><label for="5" title="Para pessoas normais.">Média</label>
         </fieldset><br>
 
         <fieldset class="inicio">
             <legend>Quem começa?</legend>
-            <input type="radio" name="quem_joga" id="6" value="1"><label for="6">X</label>
-            <input type="radio" name="quem_joga" id="7" value="2"><label for="7">O</label>
-            <input type="radio" name="quem_joga" id="8" value="3" checked><label for="8">Tanto faz!!!</label>
-        </fieldset>
+            <input type="radio" name="qi" id="6" value="1"><label for="6">X</label>
+            <input type="radio" name="qi" id="7" value="2"><label for="7">O</label>
+            <input type="radio" name="qi" id="8" value="3" checked><label for="8">Tanto faz!!!</label>
+        </fieldset><br>
 
         <span class="x"><b>--X</b></span>
             <span class="o"><b>O</b></span>
