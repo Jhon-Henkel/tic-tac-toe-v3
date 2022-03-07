@@ -1,5 +1,4 @@
 <?php
-session_start();
 //javascript de jogada inválida.
 class Jogada_invalida {
 

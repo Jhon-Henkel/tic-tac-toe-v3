@@ -1,5 +1,4 @@
 <?php
-session_start();
 // armazena a dificuldade escolhida em uma variavel global e dá nome.
 class Dificuldade {
 

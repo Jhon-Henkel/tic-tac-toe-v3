@@ -24,15 +24,15 @@
         $_SESSION['X_fixo'] = '<span class="x">X</span>'; //deixa X formatado com cor.
         $_SESSION['O_fixo'] = '<span class="o">O</span>'; //deixa O formatado com cor.
 
-        $pl = new Qtd_player($_POST['p']);      //Define a quantidade de jogadores.
-        $qi = new Quem_inicia($_POST['qi']);    //Define quem inicia.
-        $df = new Dificuldade($_POST['df']);    //Define a dificuldade.
-        $re = new Reset();                      //Chama classe de reset do game.
-        $fj = new Fim_jogo();                   //Valida o fim de jogo.
-        $tb = new Tabuleiro();                  //Constroi o tabuleiro.
-        $ia = new Jogadas_IA();                 //Jogadas IA no modo One player.
-        $ju = new Jogada_User();                //Jogadas do usuário.
-        $ji = new Jogada_invalida();            //Valida as jogadas.
+        $pl = new Qtd_player($_POST['p'] ?? null);    //Define a quantidade de jogadores.
+        $qi = new Quem_inicia($_POST['qi'] ?? null);     //Define quem inicia.
+        $df = new Dificuldade($_POST['df'] ?? null);    //Define a dificuldade.
+        $re = new Reset();                                  //Chama classe de reset do game.
+        $fj = new Fim_jogo();                               //Valida o fim de jogo.
+        $tb = new Tabuleiro();                              //Constroi o tabuleiro.
+        $ia = new Jogadas_IA();                             //Jogadas IA no modo One player.
+        $ju = new Jogada_User();                            //Jogadas do usuário.
+        $ji = new Jogada_invalida();                        //Valida as jogadas.
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////ONE PLAYER////////////////////////////////////////////////////

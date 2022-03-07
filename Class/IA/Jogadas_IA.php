@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once 'Class/Fim_jogo.php';
+require_once '../Fim_jogo.php';
 require_once 'Ataque.php';
 require_once 'Defesa.php';
 require_once 'Padrao.php';

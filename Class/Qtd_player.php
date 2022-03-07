@@ -1,5 +1,4 @@
 <?php
-session_start ();
 //coloca o valor passado pela tela home em uma variavel global.
 class Qtd_player {
 

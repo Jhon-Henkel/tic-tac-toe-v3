@@ -1,5 +1,4 @@
 <?php
-session_start();
 class Fim_jogo {
 
     private string $fim_jogo; //faz a validação de fim de partida.

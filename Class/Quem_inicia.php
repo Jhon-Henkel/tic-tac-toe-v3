@@ -1,5 +1,4 @@
 <?php
-session_start();
 //define quem inicia o jogo.
 class Quem_inicia {
 
