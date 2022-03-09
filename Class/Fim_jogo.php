@@ -8,6 +8,7 @@ class Fim_jogo {
         return $this->fim_jogo;
     }
     public function setFimJogo():void {
+        $_SESSION['deu_velha'] = $_SESSION['deu_velha'] ?? null;
         $fj = new Fim_jogo();
         $parabens = "<h2 class='center'>Parabéns jogador de ";
         $vcGanhou = "</br> Você ganhou!!!</h2>";

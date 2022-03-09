@@ -1,6 +1,7 @@
 <?php
 
 function padrao_o (): void {
+    $_SESSION['deu_velha'] = $_SESSION['deu_velha'] ?? null;
     $_SESSION['deu_velha']++;
     $_SESSION['x/o'] = 1;
     $_SESSION['ia'] = false;
