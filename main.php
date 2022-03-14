@@ -11,6 +11,7 @@
 <body class="conteudo-body">
 <div class="conteudo">
     <?php
+        require_once 'banco/banco.php';
         require_once 'Class/Reset.php';
         require_once 'Class/Qtd_player.php';
         require_once 'Class/Fim_jogo.php';
