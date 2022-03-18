@@ -1,5 +1,11 @@
  <?php
- $banco = new mysqli('127.0.0.1','root','Climba2305@','db_jogo_da_velha');
+ $host = '127.0.0.1';
+ $user = 'root';
+ $pass = 'Climba2305@';
+ $data = 'db_jogo_da_velha';
+
+ $banco = new mysqli($host, $user, $pass, $data);
+
  if ($banco->connect_error){
      echo 'Erro ao conectar banco de dados!!!';
      die();
