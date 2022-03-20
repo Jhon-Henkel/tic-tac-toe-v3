@@ -11,17 +11,18 @@ class Jogada_invalida {
 
         $reg = $b->fetch_object();
 
-        $xo = 1;
+        $xo = 0;
         for ($jc = 0; $jc <=2; $jc++){
             for ($jl = 0; $jl <=2; $jl++){
-                if ($x == $xo && $reg->J.$jc.$jl == $_SESSION['X_fixo'] ||
-                    $x == $xo && $reg->J.$jc.$jl == $_SESSION['O_fixo'] ||
-                    $o == $xo && $reg->J.$jc.$jl == $_SESSION['X_fixo'] ||
-                    $o == $xo && $reg->J.$jc.$jl == $_SESSION['O_fixo'] ){
-                    echo '<script type="text/javascript">alert("Jogada inválida, o lugar que você escolheu está ocupada!!!");</script>';
+                $tab = 'J'.$jc.$jl;
+                $xo++;
+                if ($x == $xo && $reg->$tab == 'X' ||
+                    $x == $xo && $reg->$tab == 'O' ||
+                    $o == $xo && $reg->$tab == 'X' ||
+                    $o == $xo && $reg->$tab == 'O' ){
+                    echo '<script type="text/javascript">alert("Jogada inválida, o lugar que você escolheu está ocupado!!!");</script>';
                     $banco->query ($q);
                 }
-                $xo++;
             }
         }
     }

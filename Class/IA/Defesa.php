@@ -2,83 +2,65 @@
 require_once 'Padrao.php';
 class Defesa {
     function bloqueia (): void {
-        if ($_SESSION['j'][0][0] == $_SESSION['X_fixo'] && $_SESSION['j'][1][1] == 5 || $_SESSION['j'][0][2] == $_SESSION['X_fixo'] && $_SESSION['j'][1][1] == 5 ||
-            $_SESSION['j'][2][0] == $_SESSION['X_fixo'] && $_SESSION['j'][1][1] == 5 || $_SESSION['j'][2][2] == $_SESSION['X_fixo'] && $_SESSION['j'][1][1] == 5) {
-            $_SESSION['j'][1][1] = $_SESSION['O_fixo'];
-            padrao_o();
-        }elseif ($_SESSION['j'][0][0] == $_SESSION['X_fixo'] && $_SESSION['j'][0][1] == $_SESSION['X_fixo'] && $_SESSION['j'][0][2] == 3) {
-            $_SESSION['j'][0][2] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][0][1] == $_SESSION['X_fixo'] && $_SESSION['j'][0][2] == $_SESSION['X_fixo'] && $_SESSION['j'][0][0] == 1) {
-            $_SESSION['j'][0][0] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][0][0] == $_SESSION['X_fixo'] && $_SESSION['j'][0][2] == $_SESSION['X_fixo'] && $_SESSION['j'][0][1] == 2) {
-            $_SESSION['j'][0][1] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][1][0] == $_SESSION['X_fixo'] && $_SESSION['j'][1][1] == $_SESSION['X_fixo'] && $_SESSION['j'][1][2] == 6) {
-            $_SESSION['j'][1][2] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][1][1] == $_SESSION['X_fixo'] && $_SESSION['j'][1][2] == $_SESSION['X_fixo'] && $_SESSION['j'][1][0] == 4) {
-            $_SESSION['j'][1][0] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][1][0] == $_SESSION['X_fixo'] && $_SESSION['j'][1][2] == $_SESSION['X_fixo'] && $_SESSION['j'][1][1] == 5) {
-            $_SESSION['j'][1][1] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][2][0] == $_SESSION['X_fixo'] && $_SESSION['j'][2][1] == $_SESSION['X_fixo'] && $_SESSION['j'][2][2] == 9) {
-            $_SESSION['j'][2][2] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][2][1] == $_SESSION['X_fixo'] && $_SESSION['j'][2][2] == $_SESSION['X_fixo'] && $_SESSION['j'][2][0] == 7) {
-            $_SESSION['j'][2][0] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][2][0] == $_SESSION['X_fixo'] && $_SESSION['j'][2][2] == $_SESSION['X_fixo'] && $_SESSION['j'][2][1] == 8) {
-            $_SESSION['j'][2][1] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][0][0] == $_SESSION['X_fixo'] && $_SESSION['j'][1][0] == $_SESSION['X_fixo'] && $_SESSION['j'][2][0] == 7) {
-            $_SESSION['j'][2][0] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][1][0] == $_SESSION['X_fixo'] && $_SESSION['j'][2][0] == $_SESSION['X_fixo'] && $_SESSION['j'][0][0] == 1) {
-            $_SESSION['j'][0][0] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][0][0] == $_SESSION['X_fixo'] && $_SESSION['j'][2][0] == $_SESSION['X_fixo'] && $_SESSION['j'][1][0] == 4) {
-            $_SESSION['j'][1][0] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][0][1] == $_SESSION['X_fixo'] && $_SESSION['j'][1][1] == $_SESSION['X_fixo'] && $_SESSION['j'][2][1] == 8) {
-            $_SESSION['j'][2][1] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][1][1] == $_SESSION['X_fixo'] && $_SESSION['j'][2][1] == $_SESSION['X_fixo'] && $_SESSION['j'][0][1] == 2) {
-            $_SESSION['j'][0][1] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][0][1] == $_SESSION['X_fixo'] && $_SESSION['j'][2][1] == $_SESSION['X_fixo'] && $_SESSION['j'][1][1] == 5) {
-            $_SESSION['j'][1][1] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][0][2] == $_SESSION['X_fixo'] && $_SESSION['j'][1][2] == $_SESSION['X_fixo'] && $_SESSION['j'][2][2] == 9) {
-            $_SESSION['j'][2][2] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][1][2] == $_SESSION['X_fixo'] && $_SESSION['j'][2][2] == $_SESSION['X_fixo'] && $_SESSION['j'][0][2] == 3) {
-            $_SESSION['j'][0][2] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][0][2] == $_SESSION['X_fixo'] && $_SESSION['j'][2][2] == $_SESSION['X_fixo'] && $_SESSION['j'][1][2] == 6) {
-            $_SESSION['j'][1][2] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][0][0] == $_SESSION['X_fixo'] && $_SESSION['j'][1][1] == $_SESSION['X_fixo'] && $_SESSION['j'][2][2] == 9) {
-            $_SESSION['j'][9][2] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][1][1] == $_SESSION['X_fixo'] && $_SESSION['j'][2][2] == $_SESSION['X_fixo'] && $_SESSION['j'][0][0] == 1) {
-            $_SESSION['j'][0][0] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][0][0] == $_SESSION['X_fixo'] && $_SESSION['j'][2][2] == $_SESSION['X_fixo'] && $_SESSION['j'][1][1] == 5) {
-            $_SESSION['j'][1][1] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][2][0] == $_SESSION['X_fixo'] && $_SESSION['j'][1][1] == $_SESSION['X_fixo'] && $_SESSION['j'][0][2] == 3) {
-            $_SESSION['j'][0][2] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][1][1] == $_SESSION['X_fixo'] && $_SESSION['j'][0][2] == $_SESSION['X_fixo'] && $_SESSION['j'][2][0] == 7) {
-            $_SESSION['j'][2][0] = $_SESSION['O_fixo'];
-            padrao_o();
-        } elseif ($_SESSION['j'][2][0] == $_SESSION['X_fixo'] && $_SESSION['j'][0][2] == $_SESSION['X_fixo'] && $_SESSION['j'][1][1] == 5) {
-            $_SESSION['j'][1][1] = $_SESSION['O_fixo'];
-            padrao_o();
+        require '././banco/banco.php';
+        $b1 = $banco->query ("SELECT * FROM db_jogo_da_velha.tabuleiro WHERE id_tab = 1");
+        $b2 = $banco->query ("SELECT IA FROM db_jogo_da_velha.jogador WHERE id_jogador = 1");
+        $reg1 = $b1->fetch_object();
+        $reg2 = $b2->fetch_object();
+
+        if ($reg2->IA == 1) {
+            if ($reg1->J00 == 'X' && $reg1->J11 == 5 || $reg1->J02 == 'X' && $reg1->J11 == 5 ||
+                $reg1->J20 == 'X' && $reg1->J11 == 5 || $reg1->J22 == 'X' && $reg1->J11 == 5) {
+                padrao_o('J11');
+            } elseif ($reg1->J00 == 'X' && $reg1->J01 == 'X' && $reg1->J02 == 3) {
+                padrao_o('J02');
+            } elseif ($reg1->J01 == 'X' && $reg1->J02 == 'X' && $reg1->J00 == 1) {
+                padrao_o('J00');
+            } elseif ($reg1->J00 == 'X' && $reg1->J02 == 'X' && $reg1->J01 == 2) {
+                padrao_o('J01');
+            } elseif ($reg1->J10 == 'X' && $reg1->J11 == 'X' && $reg1->J12 == 6) {
+                padrao_o('J12');
+            } elseif ($reg1->J11 == 'X' && $reg1->J12 == 'X' && $reg1->J10 == 4) {
+                padrao_o('J10');
+            } elseif ($reg1->J10 == 'X' && $reg1->J12 == 'X' && $reg1->J11 == 5) {
+                padrao_o('J11');
+            } elseif ($reg1->J20 == 'X' && $reg1->J21 == 'X' && $reg1->J22 == 9) {
+                padrao_o('J22');
+            } elseif ($reg1->J21 == 'X' && $reg1->J22 == 'X' && $reg1->J20 == 7) {
+                padrao_o('J20');
+            } elseif ($reg1->J20 == 'X' && $reg1->J22 == 'X' && $reg1->J21 == 8) {
+                padrao_o('J21');
+            } elseif ($reg1->J00 == 'X' && $reg1->J10 == 'X' && $reg1->J20 == 7) {
+                padrao_o('J20');
+            } elseif ($reg1->J10 == 'X' && $reg1->J20 == 'X' && $reg1->J00 == 1) {
+                padrao_o('J00');
+            } elseif ($reg1->J00 == 'X' && $reg1->J20 == 'X' && $reg1->J10 == 4) {
+                padrao_o('J10');
+            } elseif ($reg1->J01 == 'X' && $reg1->J11 == 'X' && $reg1->J21 == 8) {
+                padrao_o('J21');
+            } elseif ($reg1->J11 == 'X' && $reg1->J21 == 'X' && $reg1->J01 == 2) {
+                padrao_o('J01');
+            } elseif ($reg1->J01 == 'X' && $reg1->J21 == 'X' && $reg1->J11 == 5) {
+                padrao_o('J11');
+            } elseif ($reg1->J02 == 'X' && $reg1->J12 == 'X' && $reg1->J22 == 9) {
+                padrao_o('J22');
+            } elseif ($reg1->J12 == 'X' && $reg1->J22 == 'X' && $reg1->J02 == 3) {
+                padrao_o('J02');
+            } elseif ($reg1->J02 == 'X' && $reg1->J22 == 'X' && $reg1->J12 == 6) {
+                padrao_o('J12');
+            } elseif ($reg1->J00 == 'X' && $reg1->J11 == 'X' && $reg1->J22 == 9) {
+                padrao_o('J22');
+            } elseif ($reg1->J11 == 'X' && $reg1->J22 == 'X' && $reg1->J00 == 1) {
+                padrao_o('J00');
+            } elseif ($reg1->J00 == 'X' && $reg1->J22 == 'X' && $reg1->J11 == 5) {
+                padrao_o('J11');
+            } elseif ($reg1->J20 == 'X' && $reg1->J11 == 'X' && $reg1->J02 == 3) {
+                padrao_o('J02');
+            } elseif ($reg1->J11 == 'X' && $reg1->J02 == 'X' && $reg1->J20 == 7) {
+                padrao_o('J20');
+            } elseif ($reg1->J20 == 'X' && $reg1->J02 == 'X' && $reg1->J11 == 5) {
+                padrao_o('J11');
+            }
         }
     } //bloqueio de jogadas X.
-
 }

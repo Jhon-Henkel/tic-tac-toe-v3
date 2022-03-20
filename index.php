@@ -28,7 +28,7 @@
             <legend>Dificuldade modo solitário:</legend>
             <input type="radio" name="df" id="3" value="1"><label for="3" title="Para crianças.">Extra-fácil</label>
             <input type="radio" name="df" id="4" value="2"><label for="4" title="Para pessoas desprovidas de inteligencia.">Fácil</label>
-            <input type="radio" name="df" id="5" value="3" checked><label for="5" title="Para pessoas normais.">Média</label>
+            <input type="radio" name="df" id="5" value="3"  checked><label for="5" title="Para pessoas normais.">Média</label>
         </fieldset><br>
 
         <fieldset class="inicio">

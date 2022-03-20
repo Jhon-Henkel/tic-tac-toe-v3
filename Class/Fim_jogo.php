@@ -8,23 +8,28 @@ class Fim_jogo {
         return $this->fim_jogo;
     }
     public function setFimJogo():void {
-        $_SESSION['deu_velha'] = $_SESSION['deu_velha'] ?? null;
+        require '././banco/banco.php';
+
+        $b = $banco->query ("SELECT deu_velha FROM db_jogo_da_velha.tabuleiro WHERE id_tab = 1");
+        $reg = $b->fetch_object();
+
         $fj = new Fim_jogo();
+        $game_over = "<h1 class='center vermelho'>Game Over <br></h1>";
         $parabens = "<h2 class='center'>Parabéns jogador de ";
-        $vcGanhou = "</br> Você ganhou!!!</h2>";
+        $vcGanhou = "<br> Você ganhou!!!</h2>";
 
-        if ($fj->setJaGanho($_SESSION['X_fixo'])) {
-            $this->fim_jogo = $parabens.$_SESSION['X_fixo'].$vcGanhou;
+        if ($fj->setJaGanho('X')) {
+            $this->fim_jogo = $game_over.$parabens.'<span class="x">X</span>'.$vcGanhou;
             echo $this->fim_jogo;
 
-        } elseif ($fj->setJaGanho($_SESSION['O_fixo'])) {
-            $this->fim_jogo = $parabens.$_SESSION['O_fixo'].$vcGanhou;
+        } elseif ($fj->setJaGanho('O')) {
+            $this->fim_jogo = $game_over.$parabens.'<span class="o">O</span>'.$vcGanhou;
             echo $this->fim_jogo;
 
-        }elseif ($_SESSION['deu_velha'] == 9) {
-            $_SESSION['x/o'] = false;
-            $_SESSION['ia'] = false;
-            $this->fim_jogo = "<h2 class='center'>Deu Velha</br>" . "<span class='vermelho'>Ninguém ganhou!!!</span></h2>";
+        }elseif ($reg->deu_velha == 9) {
+            $q = "UPDATE db_jogo_da_velha.jogador SET X_O = false, IA = false WHERE id_jogador = 1";
+            $banco->query ($q);
+            $this->fim_jogo = $game_over."<h2 class='center'>Deu Velha</br><span class='vermelho'>Ninguém ganhou!!!</span></h2>";
             echo $this->fim_jogo;
         }
     }
@@ -33,17 +38,22 @@ class Fim_jogo {
         return $this->ja_ganho;
     }
     public function setJaGanho($v):bool {
-        if (($_SESSION['j'][0][1] == $v && $_SESSION['j'][0][0] == $v && $_SESSION['j'][0][2] == $v)
-            || ($_SESSION['j'][1][0] == $v && $_SESSION['j'][1][1] == $v && $_SESSION['j'][1][2] == $v)
-            || ($_SESSION['j'][2][0] == $v && $_SESSION['j'][2][1] == $v && $_SESSION['j'][2][2] == $v)
-            || ($_SESSION['j'][0][0] == $v && $_SESSION['j'][1][0] == $v && $_SESSION['j'][2][0] == $v)
-            || ($_SESSION['j'][0][1] == $v && $_SESSION['j'][1][1] == $v && $_SESSION['j'][2][1] == $v)
-            || ($_SESSION['j'][0][2] == $v && $_SESSION['j'][1][2] == $v && $_SESSION['j'][2][2] == $v)
-            || ($_SESSION['j'][0][0] == $v && $_SESSION['j'][1][1] == $v && $_SESSION['j'][2][2] == $v)
-            || ($_SESSION['j'][2][0] == $v && $_SESSION['j'][1][1] == $v && $_SESSION['j'][0][2] == $v)) {
+        require '././banco/banco.php';
+
+        $b = $banco->query ("SELECT * FROM db_jogo_da_velha.tabuleiro WHERE id_tab = 1");
+        $q = "UPDATE db_jogo_da_velha.jogador SET X_O = false, IA = false WHERE id_jogador = 1";
+        $reg = $b->fetch_object();
+
+        if (($reg->J00 == $v && $reg->J01 == $v && $reg->J02 == $v)
+            || ($reg->J10 == $v && $reg->J11 == $v && $reg->J12 == $v)
+            || ($reg->J20 == $v && $reg->J21 == $v && $reg->J22 == $v)
+            || ($reg->J00 == $v && $reg->J10 == $v && $reg->J20 == $v)
+            || ($reg->J01 == $v && $reg->J11 == $v && $reg->J21 == $v)
+            || ($reg->J02 == $v && $reg->J12 == $v && $reg->J22 == $v)
+            || ($reg->J00 == $v && $reg->J11 == $v && $reg->J22 == $v)
+            || ($reg->J20 == $v && $reg->J11 == $v && $reg->J02 == $v)) {
             $this->ja_ganho = true;
-            $_SESSION['x/o'] = false;
-            $_SESSION['ia'] = false;
+            $banco->query ($q);
         }else{
             $this->ja_ganho = false;
         }
