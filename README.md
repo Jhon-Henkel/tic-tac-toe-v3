@@ -1,17 +1,3 @@
 # Jogo-da-velha-V3
 
---------------------------------------------------------
-Corrigir:
-
-  -ok-Clique no menu.
-  
-     -Pop-up de jogada inválida deixando fundo branco.
-  
---------------------------------------------------------
-Fazer:
-
-  -ok-Deixar o código mais limpo.
-  
-     -Colocar armazenamento de valores via banco de dados.
-     
-     -Multiplayer em maquinas diferentes.
+Nesta versão, temos uma repaginada no visual, organização de código por classes em POO, armazenamento de insformações via banco de dados (na versão anterior era por variavel de sessão).
