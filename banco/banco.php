@@ -1,6 +1,6 @@
  <?php
 
- $banco = new mysqli('127.0.0.1', 'root', '', 'db_jogo_da_velha');
+ $banco = new mysqli('127.0.0.1', 'root', 'Climba2305@', 'db_jogo_da_velha');
 
  $q1 = "CREATE TABLE IF NOT EXISTS db_jogo_da_velha.jogador (
             id_jogador int NOT NULL AUTO_INCREMENT,

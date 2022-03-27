@@ -9,6 +9,10 @@
 </head>
 
 <body class="conteudo-body">
+    <?php
+        $_SESSION['botaoResetPlacar'] = false;
+        include    'placar.php';
+    ?>
 <div class="conteudo">
     <?php
         include      'banco/banco.php';
@@ -22,7 +26,7 @@
         $tb = new Tabuleiro($_POST['qi'],                   //Constroi o tabuleiro.
                             $_POST['p'],                    //Define a quantidade de jogadores.
                             $_POST['df'],                   //Define a dificuldade
-        );
+            );
         $ji = new Jogada_invalida();                        //Valida as jogadas.
         $ju = new Jogada_User();                            //Jogadas do usuário.
         $ia = new Jogadas_IA();                             //Jogadas IA no modo One player.

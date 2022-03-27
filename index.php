@@ -9,6 +9,12 @@
 </head>
 
 <body class="conteudo-body">
+    <?php
+        $_SESSION['botaoResetPlacar'] = true;
+        $_SESSION['X'] = $_SESSION['X'] ?? 0;
+        $_SESSION['O'] = $_SESSION['O'] ?? 0;
+        include 'placar.php';
+    ?>
 <div class="conteudo">
     <h1>
         <span class="x"><b>--X</b></span>
@@ -17,7 +23,7 @@
             <span class="o"><b> O</b></span>
         <span class="x"><b>X--</b></span>
     </h1>
-    <form class="center" method="post" action="main.php">
+    <form class="center" method="post" action="./main.php">
         <fieldset class="inicio">
             <legend>Como irá jogar?</legend>
             <input type="radio" name="p" id="1" value="1" checked><label for="1">Sozinho</label>

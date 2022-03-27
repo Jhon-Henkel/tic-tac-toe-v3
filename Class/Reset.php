@@ -1,7 +1,9 @@
 <?php
 //formulario de reset.
-class Reset {
-    function reset_game (): void {
+class Reset
+{
+    function reset_game (): void
+    {
         echo '
         <form class="reset" method="post" action="../Reset_Game.php">
             <label>
