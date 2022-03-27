@@ -1,17 +1,9 @@
 # Jogo-da-velha-V3
 
---------------------------------------------------------
-Corrigir:
+Nesta versão, temos uma repaginada no visual, organização de código por classes em POO, armazenamento de insformações via banco de dados (na versão anterior era por variavel de sessão).
 
-  -ok-Clique no menu.
-  
-     -Pop-up de jogada inválida deixando fundo branco.
-  
---------------------------------------------------------
-Fazer:
+# Como usar:
 
-  -ok-Deixar o código mais limpo.
-  
-     -Colocar armazenamento de valores via banco de dados.
-     
-     -Multiplayer em maquinas diferentes.
+Para funcioonar você deve ter um banco de dados MySQL na sua maquina com o nome **db_jogo_da_velha** e definir a senha do seu banco na 3ª linha dentro do arquivo que se encontra em **banco/banco.php**, as tabelas serão criadas automaticamente.
+
+Deve-se colocar todos os arquivos dentro da pasta do seu servidor virtual, recomendo o xampp, e em seguida acessar o localhost.
