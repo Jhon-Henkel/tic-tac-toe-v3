@@ -5,7 +5,7 @@ class Jogada_invalida
 
     function jogadaInvalida ($x, $o): void
     {
-        require './banco/banco.php';
+        require './banco/DbGame.php';
 
         $b = $banco->query ("SELECT * FROM db_jogo_da_velha.tabuleiro WHERE id_tab = 1");
         $q = "UPDATE db_jogo_da_velha.jogador SET IA = false WHERE id_jogador = 1";

@@ -11,7 +11,7 @@ class Fim_jogo
     }
     public function setFimJogo():void
     {
-        require '././banco/banco.php';
+        require '././banco/DbGame.php';
 
         $b = $banco->query ("SELECT deu_velha FROM db_jogo_da_velha.tabuleiro WHERE id_tab = 1");
         $reg = $b->fetch_object();
@@ -46,7 +46,7 @@ class Fim_jogo
     }
     public function setJaGanho($v):bool
     {
-        require '././banco/banco.php';
+        require '././banco/DbGame.php';
 
         $b = $banco->query ("SELECT * FROM db_jogo_da_velha.tabuleiro WHERE id_tab = 1");
         $q = "UPDATE db_jogo_da_velha.jogador SET X_O = false, IA = false WHERE id_jogador = 1";

@@ -1,11 +1,11 @@
 <?php
-    require 'banco/banco.php';
+    require 'banco/DbGame.php';
 
     $q1 = "TRUNCATE TABLE db_jogo_da_velha.jogador";
     $q2 = "TRUNCATE TABLE db_jogo_da_velha.tabuleiro";
 
-    $banco->query ($q1);
-    $banco->query ($q2);
-    $banco->close();
+    $dataBase->query ($q1);
+    $dataBase->query ($q2);
+    $dataBase->close();
 
-    header('location: index.php');
+    header('location: index.html');

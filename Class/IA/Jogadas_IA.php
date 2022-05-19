@@ -7,7 +7,7 @@ class Jogadas_IA
 {
     public function jogada_ia (): void
     {
-        require '././banco/banco.php';
+        require '././banco/DbGame.php';
 
         $fim = new Fim_jogo();
         $def = new Defesa();

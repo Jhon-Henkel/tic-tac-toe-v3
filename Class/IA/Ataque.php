@@ -4,7 +4,7 @@ class Ataque
 {
     function ataque_o (): void
     {
-        require '././banco/banco.php';
+        require '././banco/DbGame.php';
 
         $b1 = $banco->query ("SELECT * FROM db_jogo_da_velha.tabuleiro WHERE id_tab = 1");
         $b2 = $banco->query ("SELECT IA FROM db_jogo_da_velha.jogador WHERE id_jogador = 1");

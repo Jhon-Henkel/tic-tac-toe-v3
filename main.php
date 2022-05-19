@@ -15,7 +15,7 @@
     ?>
 <div class="conteudo">
     <?php
-        include      'banco/banco.php';
+        include 'banco/DbGame.php';
         require_once 'Class/Tabuleiro.php';
         require_once 'Class/Jogada_invalida.php';
         require_once 'Class/Player/Jogada_User.php';
@@ -33,7 +33,7 @@
         $fj = new Fim_jogo();                               //Valida o fim de jogo.
         $re = new Reset();                                  //Chama classe de reset do game.
 
-        $b = $banco->query ("SELECT qtd_jog, dific FROM db_jogo_da_velha.jogador WHERE id_jogador = 1");
+        $b = $dataBase->query ("SELECT qtd_jog, dific FROM db_jogo_da_velha.jogador WHERE id_jogador = 1");
         $reg = $b->fetch_object();
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

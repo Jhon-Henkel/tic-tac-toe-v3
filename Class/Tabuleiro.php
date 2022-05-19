@@ -5,7 +5,7 @@ class Tabuleiro
 
     public function __construct($qi, $p, $dif)
     {
-        require './banco/banco.php';
+        require './banco/DbGame.php';
 
         $b = $banco->query ("SELECT tab_done FROM db_jogo_da_velha.tabuleiro");
         $reg = $b->fetch_object();
@@ -26,7 +26,7 @@ class Tabuleiro
 
     public function tab (): void
     {
-        require './banco/banco.php';
+        require './banco/DbGame.php';
 
         $b1 = $banco->query ("SELECT * FROM db_jogo_da_velha.tabuleiro WHERE id_tab = 1");
         $b2 = $banco->query ("SELECT X_O, IA FROM db_jogo_da_velha.jogador WHERE id_jogador = 1");
@@ -83,7 +83,7 @@ class Tabuleiro
 
     public function quem_inicia($qi, $pl): void
     {
-        require './banco/banco.php';
+        require './banco/DbGame.php';
 
         /* $qi = quem inicia | 1 = X | 2 = O | 3 = Tanto faz
            $pl = quantidade de jogadores | 1 = single player | 2 = multiplayer */
@@ -123,7 +123,7 @@ class Tabuleiro
     }
 
     public function dificuldade ($dif): void{
-        require './banco/banco.php';
+        require './banco/DbGame.php';
 
         if ($dif == 1)
         {
@@ -143,7 +143,7 @@ class Tabuleiro
     {
         if ($player == 1 || $player == 2)
         {
-            require 'banco/banco.php';
+            require 'banco/DbGame.php';
             $q = "INSERT INTO db_jogo_da_velha.jogador (id_jogador, qtd_jog) VALUES ('1', '$player')";
             $banco->query($q);
         }
