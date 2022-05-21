@@ -2,7 +2,8 @@
 
 include '../banco/DataBase.php';
 
-$dbConnect = new dbCreate();
+$dbConnect = new connectDB();
+
 $gamePost = json_decode(file_get_contents('php://input'), true);
 $db = $dbConnect->getDb();
 $db->query(

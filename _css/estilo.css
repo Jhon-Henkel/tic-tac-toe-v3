@@ -2,7 +2,7 @@ html {
     font: 15pt Arial;
 }
 .conteudo-body {
-    background: url("wallpaper-php.jpg") no-repeat top center fixed;
+    background: url("_images/wallpaper_fundo.jpg") no-repeat top center fixed;
     background-size: cover;
 }
 
@@ -32,7 +32,7 @@ html {
     padding: 10px;
     width: 650px;
     min-height:300px;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
     box-shadow: 0 0 1em black;
 }
 
@@ -60,10 +60,6 @@ h1 {
     text-align: center;
 }
 
-.reset {
-    text-align: end;
-}
-
 .x {
     color: darkred;
 }
@@ -80,12 +76,12 @@ h1 {
     margin-bottom: 6px;
 }
 
-.transparente {
+.transparent {
     color: transparent;
 }
 
 .background_grade {
-    background-image: url("_image/grade.png");
+    background-image: url("_images/grade.png");
     height: 216px;
     width: 234px;
     margin-left: 166px;
@@ -102,15 +98,32 @@ h1 {
     border-radius: 5px;
 }
 
-.inicio {
-    text-align: start;
+.footer {
+    text-align: center;
+    font-size: 15px;
+    color: white;
+    background-color: rgba(39,55,71,0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 650px;
+    height: 25px;
+    box-shadow: 0 2px 1em black;
+    border-radius: 0 0 10px 10px;
 }
 
-.btn_reset {
-    font-size: 20px;
-    font-weight: bold;
-    background-color: white;
-    border-radius: 50px;
-    border-color: midnightblue;
-    box-shadow: 0 0 1em midnightblue;
+.btn-size {
+    width: 110px;
+}
+
+.btn-sm {
+    margin-bottom: 15px;
+}
+
+.shadow-border {
+    box-shadow: 0 0 1em black;
+    border-radius: 5px;
 }

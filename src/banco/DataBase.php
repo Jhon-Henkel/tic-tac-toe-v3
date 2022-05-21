@@ -1,6 +1,6 @@
 <?php
 
-class dbCreate
+class connectDB
 {
     private static mysqli $db;
     private static string $hostName;
@@ -9,13 +9,17 @@ class dbCreate
 
     public function __construct()
     {
+        //fazer uma config para setar esses valores.
+        self::setHostName('localhost');
+        self::setUserName('root');
+        self::setPassword('');
         $hostName = self::getHostName();
         $userName = self::getUserName();
         $password = self::getPassword();
         $dbCrete = new mysqli($hostName, $userName, $password);
+
         if (mysqli_connect_errno()) {
-            echo 'Erro ao conectar banco de dados: '. mysqli_connect_error();
-            echo '<br>Verifique se os dados de acesso estão corretos';
+            header("location: /#!/config");
         }
         if (!$dbCrete->query('CREATE DATABASE IF NOT EXISTS tic_tac_toe')) {
             echo 'Erro ao criar banco de dados, verifique as suas configurações';
@@ -71,10 +75,19 @@ class dbCreate
      */
     public static function getDb(): mysqli
     {
+        //fazer uma config para setar esses valores.
+        self::setHostName('localhost');
+        self::setUserName('root');
+        self::setPassword('');
         $hostName = self::getHostName();
         $userName = self::getUserName();
         $password = self::getPassword();
-        return new mysqli($hostName, $userName, $password, 'tic_tac_toe');
+        $dbConnect = new mysqli($hostName, $userName, $password, 'tic_tac_toe');
+
+        if (mysqli_connect_errno()) {
+            header("location: /#!/config");
+        }
+        return $dbConnect;
     }
 
     /**
@@ -88,7 +101,7 @@ class dbCreate
     /**
      * @param string $hostName
      */
-    public static function setHostName(string $hostName): string
+    public static function setHostName(string $hostName)
     {
         self::$hostName = $hostName;
     }
@@ -104,7 +117,7 @@ class dbCreate
     /**
      * @param string $userName
      */
-    public static function setUserName(string $userName): void
+    public static function setUserName(string $userName)
     {
         self::$userName = $userName;
     }
@@ -120,7 +133,7 @@ class dbCreate
     /**
      * @param string $password
      */
-    public static function setPassword(string $password): void
+    public static function setPassword(string $password)
     {
         self::$password = $password;
     }
