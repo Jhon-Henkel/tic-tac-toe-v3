@@ -1,5 +1,7 @@
-angular.module("ticTacToe").controller("ticTacToeConfigCtrl", function ($scope, $http, $location, config) {
-    $scope.configData = {};
+angular.module("ticTacToe").controller("ticTacToeConfigCtrl", function ($scope, $http, $location, config, getConfig) {
+
+    $scope.configData = getConfig.data;
+
     $scope.configDb = function (configDb) {
         $scope.checkData();
         $http.post(config.apiURL + 'saveConnectionDbPost.php', configDb).then(function () {

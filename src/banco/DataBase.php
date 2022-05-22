@@ -9,10 +9,6 @@ class connectDB
 
     public function __construct()
     {
-        //fazer uma config para setar esses valores.
-        self::setHostName('localhost');
-        self::setUserName('root');
-        self::setPassword('');
         $hostName = self::getHostName();
         $userName = self::getUserName();
         $password = self::getPassword();
@@ -68,10 +64,6 @@ class connectDB
      */
     public static function getDb(): mysqli
     {
-        //fazer uma config para setar esses valores.
-        self::setHostName('localhot');
-        self::setUserName('root');
-        self::setPassword('');
         $hostName = self::getHostName();
         $userName = self::getUserName();
         $password = self::getPassword();

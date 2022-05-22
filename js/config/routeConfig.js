@@ -11,6 +11,11 @@ angular.module("ticTacToe").config(function ($routeProvider) {
     $routeProvider.when("/config", {
         templateUrl: "view/configurations.html",
         controller: "ticTacToeConfigCtrl",
+        resolve: {
+            getConfig: function (databaseAPI) {
+                return databaseAPI.getConfigs();
+            }
+        }
     });
 
     $routeProvider.otherwise({redirectTo: "/home"});
