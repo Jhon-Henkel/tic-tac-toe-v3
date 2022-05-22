@@ -1,7 +1,7 @@
 <h3>
     <span class="x"><b>--X</b></span>
     <span class="o"><b>O </b></span>
-    Configurar Banco de dados
+    Configurar banco de dados
     <span class="o"><b> O</b></span>
     <span class="x"><b>X--</b></span>
 </h3>
@@ -10,11 +10,12 @@
 
     <div class="shadow-border">
         <p>
-            Certifique-se de ter o MySQL instalado, e coloque aqui as <br>
-            configurações de acesso ao seu MySQL.
+            Certifique-se de ter o MySQL instalado, e coloque <br>
+            aqui as configurações de acesso ao seu MySQL.
         </p>
         <p>
-            Após testar as configurações clique em <b>Criar base de dados</b> <br>
+            Após <b>testar</b> as configurações e <br>
+            <b>salvar</b> clique em <b>Criar base de dados</b> <br>
         </p>
     </div>
 
@@ -40,13 +41,12 @@
 
     <br/>
 
-        <button class="bnt btn-primary btn-sm btn-full shadow-border">Criar base de dados</button>
-        <br>
-
     <div>
-        <button class="btn-size btn btn-outline-primary btn-sm shadow-border" ng-click="configDb(configData)">salvar</button>
+        <button class="btn-size btn btn-outline-primary btn-sm shadow-border" ng-click="saveConfigDb(configData)">salvar</button>
         <button class="btn-size btn btn-outline-primary btn-sm shadow-border" type="reset">Padrão</button>
         <button class="btn-size btn btn-outline-success btn-sm shadow-border" ng-click="testConnection(configData)">Testar</button>
         <a class="btn-size btn btn-outline-danger btn-sm shadow-border" href="{{baseURL}}#!/home">Home</a>
     </div>
+
+    <button class="bnt btn-primary btn-sm btn-full shadow-border" ng-click="createDb()">Criar base de dados</button>
 </form>

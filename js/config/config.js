@@ -1,5 +1,5 @@
 angular.module("ticTacToe").constant("config", {
-    apiURL: "http://localhost/Jogo-da-velha-V3/src/API/",
+    apiURL: "http://localhost/Jogo-da-velha-V3/src/API/database/",
     baseURL: "http://localhost/Jogo-da-velha-V3/",
     defaultDbHost: "localhost",
     defaultDbUser: "root",

@@ -7,19 +7,8 @@ class connectDB
     private static string $userName;
     private static string $password;
 
-    public function __construct()
-    {
-        $hostName = self::getHostName();
-        $userName = self::getUserName();
-        $password = self::getPassword();
-        $dbCrete = new mysqli($hostName, $userName, $password);
-        $dbCrete->query('CREATE DATABASE IF NOT EXISTS tic_tac_toe');
-        self::createDb();
-    }
-
     public static function createDb()
     {
-
         $createTablePlayer = "
         CREATE TABLE IF NOT EXISTS player (
             id_player int NOT NULL AUTO_INCREMENT,
@@ -49,6 +38,12 @@ class connectDB
         PRIMARY KEY (`id_board`)) 
         ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
         ";
+
+        $hostName = self::getHostName();
+        $userName = self::getUserName();
+        $password = self::getPassword();
+        $dbCrete = new mysqli($hostName, $userName, $password);
+        $dbCrete->query('CREATE DATABASE IF NOT EXISTS tic_tac_toe');
 
         $db = self::getDb();
         $db->query ($createTablePlayer);
