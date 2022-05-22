@@ -17,14 +17,7 @@ class connectDB
         $userName = self::getUserName();
         $password = self::getPassword();
         $dbCrete = new mysqli($hostName, $userName, $password);
-
-        if (mysqli_connect_errno()) {
-            header("location: /#!/config");
-        }
-        if (!$dbCrete->query('CREATE DATABASE IF NOT EXISTS tic_tac_toe')) {
-            echo 'Erro ao criar banco de dados, verifique as suas configurações';
-            die();
-        }
+        $dbCrete->query('CREATE DATABASE IF NOT EXISTS tic_tac_toe');
         self::createDb();
     }
 
@@ -76,18 +69,13 @@ class connectDB
     public static function getDb(): mysqli
     {
         //fazer uma config para setar esses valores.
-        self::setHostName('localhost');
+        self::setHostName('localhot');
         self::setUserName('root');
         self::setPassword('');
         $hostName = self::getHostName();
         $userName = self::getUserName();
         $password = self::getPassword();
-        $dbConnect = new mysqli($hostName, $userName, $password, 'tic_tac_toe');
-
-        if (mysqli_connect_errno()) {
-            header("location: /#!/config");
-        }
-        return $dbConnect;
+        return new mysqli($hostName, $userName, $password, 'tic_tac_toe');
     }
 
     /**

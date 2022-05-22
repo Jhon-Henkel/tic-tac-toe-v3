@@ -1,33 +1,40 @@
-<h1>
+<h3>
     <span class="x"><b>--X</b></span>
     <span class="o"><b>O </b></span>
-    Configurações
+    Configurar Banco de dados
     <span class="o"><b> O</b></span>
     <span class="x"><b>X--</b></span>
-</h1>
+</h3>
 
 <form class="center" name="configForm">
 
-    <br/>
-    <h5>Conexão banco de dados</h5>
-    <br/>
+    <div class="shadow-border">
+        <p>
+            Certifique-se de ter o MySQL instalado, e coloque aqui as <br>
+            configurações de acesso ao seu MySQL.
+        </p>
+        <p>
+            Não é necessário criar nenhum banco, criaremos tudo <br>
+            para você, basta fornecer os dados de acesso.
+        </p>
+    </div>
 
     <fieldset class="inicio">
         <div class="input-group mb-3 shadow-border">
             <span class="input-group-text btn-size">Host:</span>
-            <input class="form-control" type="text" ng-model="config.host" value="localhost"
+            <input class="form-control" type="text" ng-model="configData.host" value="localhost"
                 aria-label="host" aria-describedby="host">
         </div>
 
         <div class="input-group mb-3 shadow-border">
             <span class="input-group-text btn-size">Usuário:</span>
-            <input class="form-control" type="text" ng-model="config.username" value="root"
+            <input class="form-control" type="text" ng-model="configData.username" value="root"
                 aria-label="username" aria-describedby="username">
         </div>
 
         <div class="input-group mb-3 shadow-border">
             <span class="input-group-text btn-size">Senha:</span>
-            <input class="form-control" type="text" ng-model="config.password" value=""
+            <input class="form-control" type="text" ng-model="configData.password" value=""
                 aria-label="password" aria-describedby="password">
         </div>
     </fieldset>
@@ -35,10 +42,9 @@
     <br/>
 
     <div>
-        <button class="btn-size btn btn-outline-primary btn-sm shadow-border" ng-on-click="config(config)">salvar</button>
+        <button class="btn-size btn btn-outline-primary btn-sm shadow-border" ng-click="configDb(configData)">salvar</button>
         <button class="btn-size btn btn-outline-primary btn-sm shadow-border" type="reset">Padrão</button>
-        <button class="btn-size btn btn-outline-success btn-sm shadow-border" ng-on-click="testConnection(config)">Testar</button>
-        <button class="btn-size btn btn-outline-danger btn-sm shadow-border" ng-on-click="home()">Home</button>
-
+        <button class="btn-size btn btn-outline-success btn-sm shadow-border" ng-click="testConnection(configData)">Testar</button>
+        <a class="btn-size btn btn-outline-danger btn-sm shadow-border" href="{{baseURL}}#!/home">Home</a>
     </div>
 </form>
