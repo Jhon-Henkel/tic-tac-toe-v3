@@ -8,8 +8,8 @@ angular.module("ticTacToe").controller("ticTacToeHomeCtrl", function ($scope, $h
             $scope.game.init = 3;
         }
 
-        $http.post(config.apiURL + 'initialGamePost.php', game).then(function () {
-            //$location.path('/lets-play');
+        $http.post(config.apiDefaultUrl + 'initialGamePost.php', game).then(function () {
+            $location.path('/lets-play');
         }, function (response) {
             alert("Erro ao iniciar jogo " + response);
         })

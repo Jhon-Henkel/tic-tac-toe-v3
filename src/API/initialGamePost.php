@@ -18,6 +18,11 @@ $db->query(
                     1, 
                     "' . $gamePost['init'] . '", 
                     "' . $gamePost['difficulty'] . '",
-                    "' . $gamePost['player'] . '"
+                    "' . $gamePost['player'] . '",
                     )'
 );
+
+$db->query('INSERT INTO board (id_board, J1, J2, J3, J4, J5, J6, J7, J8, J9, got_old, board_done)
+                VALUES (1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, true)');
+$db->query('INSERT INTO board (id_board, J1, J2, J3, J4, J5, J6, J7, J8, J9)
+                VALUES (2, null, null, null, null, null, null, null, null, null)');

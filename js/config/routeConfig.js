@@ -5,7 +5,8 @@ angular.module("ticTacToe").config(function ($routeProvider) {
     });
 
     $routeProvider.when("/lets-play", {
-        templateUrl: "view/game.html",
+        templateUrl: "view/lets-play.php",
+        controller: "ticTacToeLetsPlayCtrl",
     });
 
     $routeProvider.when("/config", {
