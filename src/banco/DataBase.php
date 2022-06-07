@@ -70,7 +70,8 @@ class connectDB
      */
     public static function getHostName(): string
     {
-        return self::$hostName;
+        $data = json_decode(file_get_contents('../config/configDatabase.json'));
+        return $data->host;
     }
 
     /**
@@ -86,7 +87,8 @@ class connectDB
      */
     public static function getUserName(): string
     {
-        return self::$userName;
+        $data = json_decode(file_get_contents('../config/configDatabase.json'));
+        return $data->username;
     }
 
     /**
@@ -102,7 +104,8 @@ class connectDB
      */
     public static function getPassword(): string
     {
-        return self::$password;
+        $data = json_decode(file_get_contents('../config/configDatabase.json'));
+        return $data->password;
     }
 
     /**

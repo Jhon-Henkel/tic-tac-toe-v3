@@ -7,10 +7,10 @@
     require_once '../Class/EndGame.php';
     require_once '../Class/Reset.php';
 
-    $selectModeAndDifficulty = connectDB::getDb()->query ("SELECT X_O, qtd_player, difficulty FROM player WHERE id_player = 1");
+    $selectModeAndDifficulty = connectDB::getDb()->query ("SELECT X_O, qtd_players, difficulty FROM player WHERE id_player = 1");
     $result = $selectModeAndDifficulty->fetch_object();
 
-    $board          =   new Board($_POST[$result->X_O], $_POST[$result->qtd_player]);
+    $board          =   new Board($result->X_O, $result->qtd_players);
     $invalidPlay    =   new InvalidPlay();  //Valida as jogadas.
     $userPlay       =   new UserPlay();     //Jogadas do usuário.
     $iaPlay         =   new IaPlay();       //Jogadas IA no modo One player.
