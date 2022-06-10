@@ -1,5 +1,12 @@
 <?php
 
+namespace banco;
+
+include_once __DIR__ . '/../../config/Constants.php';
+
+use mysqli;
+use constants;
+
 class connectDB
 {
     private static mysqli $db;
@@ -70,8 +77,8 @@ class connectDB
      */
     public static function getHostName(): string
     {
-        $data = json_decode(file_get_contents('../config/configDatabase.json'));
-        return $data->host;
+        $data = json_decode(file_get_contents(constants\Constants::STRING_CONFIG_DATABASE_FILE));
+        return self::$hostName = $data->host;
     }
 
     /**
@@ -87,8 +94,8 @@ class connectDB
      */
     public static function getUserName(): string
     {
-        $data = json_decode(file_get_contents('../config/configDatabase.json'));
-        return $data->username;
+        $data = json_decode(file_get_contents(constants\Constants::STRING_CONFIG_DATABASE_FILE));
+        return self::$userName = $data->username;
     }
 
     /**
@@ -104,8 +111,8 @@ class connectDB
      */
     public static function getPassword(): string
     {
-        $data = json_decode(file_get_contents('../config/configDatabase.json'));
-        return $data->password;
+        $data = json_decode(file_get_contents(constants\Constants::STRING_CONFIG_DATABASE_FILE));
+        return self::$password = $data->password;
     }
 
     /**

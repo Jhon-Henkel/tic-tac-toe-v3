@@ -1,50 +1,84 @@
 <?php
-    include '../src/banco/DataBase.php';
-    require_once '../Class/Board.php';
-    require_once '../Class/InvalidPlay.php';
-    require_once '../Class/Player/UserPlay.php';
-    require_once '../Class/IA/IaPlay.php';
-    require_once '../Class/EndGame.php';
-    require_once '../Class/Reset.php';
 
-    $selectModeAndDifficulty = connectDB::getDb()->query ("SELECT X_O, qtd_players, difficulty FROM player WHERE id_player = 1");
-    $result = $selectModeAndDifficulty->fetch_object();
+namespace letsPlay;
 
-    $board          =   new Board($result->X_O, $result->qtd_players);
-    $invalidPlay    =   new InvalidPlay();  //Valida as jogadas.
-    $userPlay       =   new UserPlay();     //Jogadas do usuário.
-    $iaPlay         =   new IaPlay();       //Jogadas IA no modo One player.
-    $endGame        =   new EndGame();      //Valida o fim de jogo.
-    $reset          =   new Reset();        //Chama classe de reset do game.
+include_once __DIR__ . '/../config/Constants.php';
+include_once __DIR__ . '/../src/banco/DataBase.php';
+include_once __DIR__ . '/../Class/Board.php';
+include_once __DIR__ . '/../Class/InvalidPlay.php';
+include_once __DIR__ . '/../Class/Player/UserPlay.php';
+include_once __DIR__ . '/../Class/IA/IaPlay.php';
+include_once __DIR__ . '/../Class/EndGame.php';
+include_once __DIR__ . '/../Class/Reset.php';
 
+use banco\connectDB;
+use board\Board;
+use invalidPlay\InvalidPlay;
+use userPlay\UserPlay;
+use iaPlay\IaPlay;
+use endGame\EndGame;
+use reset\Reset;
+use constants\Constants;
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////ONE PLAYER////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    if ($result->qtd_player == 1){
-        $x = $_POST['X'];
-        $o = null;
+$selectModeAndDifficulty = connectDB::getDb()
+    ->query ("SELECT X_O, qtd_players, difficulty FROM player WHERE id_player = 1");
 
-        ?>
-            <b>Dificuldade da IA: </b><span class='vermelho'> <?php $result->difficulty ?> </span><br><br>
-        <?php
-        $invalidPlay->jogadaInvalida($x, $o);
+$result = $selectModeAndDifficulty->fetch_object();
+
+$board          =   new Board($result->X_O, $result->qtd_players);
+$invalidPlay    =   new InvalidPlay();
+$userPlay       =   new UserPlay();
+$iaPlay         =   new IaPlay();
+$endGame        =   new EndGame();
+$reset          =   new Reset();
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////ONE PLAYER////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+if ($result->qtd_players == Constants::VALOR_SINGLE_PLAYER){
+    $x = $_POST[Constants::STRING_X] ?? null;
+    $o = null;
+
+    switch ($result->difficulty) {
+        case 1:
+            $difficulty = Constants::STRING_FACIL;
+            break;
+        case 2:
+            $difficulty = Constants::STRING_MEDIA;
+            break;
+        case 3:
+            $difficulty = Constants::STRING_DIFICIL;
+            break;
+    }
+
+    ?>
+        <b>Dificuldade da IA: </b><span class='vermelho'> <?php echo $difficulty ?> </span><br><br>
+    <?php
+    $invalidPlay->jogadaInvalida($x, $o);
+
+    if (!is_null($x)) {
         $userPlay->play($x);
+    } else {
         $iaPlay->IaPlay();
     }
+}
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////TWO PLAYER////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    if ($result->qtd_jog == 2){
-        $x = $_POST['X'];
-        $o = $_POST['O'];
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////TWO PLAYER////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+if ($result->qtd_players == Constants::VALOR_MULTI_PLAYER){
+    $x = $_POST[Constants::STRING_X] ?? null;
+    $o = $_POST[Constants::STRING_O] ?? null;
 
-        $invalidPlay->jogadaInvalida($x, $o);
+    $invalidPlay->jogadaInvalida($x, $o);
+
+    if (!is_null($x)) {
         $userPlay->play($x);
+    } else {
         $userPlay->play($o);
     }
+}
 
-    $endGame->setEndGame();
-    $board->board();
-    $reset->resetGame();
+$endGame->setEndGame();
+$board->board();
+$reset->resetGame();

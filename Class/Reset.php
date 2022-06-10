@@ -1,5 +1,6 @@
 <?php
-//formulario de reset.
+namespace reset;
+
 class Reset
 {
     function resetGame (): void

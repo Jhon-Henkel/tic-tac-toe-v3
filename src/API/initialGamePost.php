@@ -1,6 +1,10 @@
 <?php
 
-include '../banco/DataBase.php';
+namespace initialGamePost;
+
+include_once __DIR__ . '/../banco/DataBase.php';
+
+use banco\connectDB;
 
 $dbConnect = new connectDB();
 
@@ -18,7 +22,7 @@ $db->query(
                     1, 
                     "' . $gamePost['init'] . '", 
                     "' . $gamePost['difficulty'] . '",
-                    "' . $gamePost['player'] . '",
+                    "' . $gamePost['player'] . '"
                     )'
 );
 

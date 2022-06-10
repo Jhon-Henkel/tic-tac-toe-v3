@@ -1,4 +1,13 @@
-<?php session_start();
+<?php
+
+namespace endGame;
+
+include_once __DIR__ . '/../config/Constants.php';
+include_once __DIR__ . '/../src/banco/DataBase.php';
+
+use banco;
+use constants;
+
 class EndGame
 {
 
@@ -12,9 +21,7 @@ class EndGame
 
     public function setEndGame():void
     {
-        require '../src/banco/DataBase.php';
-
-        $gotOld = connectDB::getDb()->query ("SELECT got_old FROM board WHERE id_board = 1");
+        $gotOld = banco\connectDB::getDb()->query ("SELECT got_old FROM board WHERE id_board = 1");
         $resultsGotOld = $gotOld->fetch_object();
 
         $endGame = new EndGame();
@@ -22,16 +29,16 @@ class EndGame
         $congratulations = "<h2 class='center'>Parabéns jogador de ";
         $youWin = "<br> Você ganhou!!!</h2>";
 
-        if ($endGame->setHaveWin('X')) {
+        if ($endGame->setHaveWin(constants\Constants::STRING_X)) {
             $this->endGame = $gameOver.$congratulations.'<span class="x">X</span>'.$youWin;
             echo $this->endGame;
-        } elseif ($endGame->setHaveWin('O')) {
+        } elseif ($endGame->setHaveWin(constants\Constants::STRING_O)) {
             $this->endGame = $gameOver.$congratulations.'<span class="o">O</span>'.$youWin;
             echo $this->endGame;
-        }elseif ($resultsGotOld->got_old == 9)
+        }elseif ($resultsGotOld->got_old == constants\Constants::VALOR_DEU_VELHA)
         {
             $setEndGameGotOld = "UPDATE player SET X_O = false, IA = false WHERE id_player = 1";
-            connectDB::getDb()->query ($setEndGameGotOld);
+            banco\connectDB::getDb()->query ($setEndGameGotOld);
             $this->endGame = $gameOver."<h2 class='center'>Deu Velha</br><span class='vermelho'>Ninguém ganhou!!!</span></h2>";
             echo $this->endGame;
         }
@@ -44,9 +51,7 @@ class EndGame
 
     public function setHaveWin($play):bool
     {
-        require '../src/banco/DataBase.php';
-
-        $selectBoardId1 = connectDB::getDb()->query ("SELECT * FROM board WHERE id_board = 1");
+        $selectBoardId1 = banco\connectDB::getDb()->query ("SELECT * FROM board WHERE id_board = 1");
         $endGame = "UPDATE player SET X_O = false, IA = false WHERE id_player = 1";
         $resultsBoardId1 = $selectBoardId1->fetch_object();
 
@@ -61,7 +66,7 @@ class EndGame
             || ($resultsBoardId1->J3 == $play && $resultsBoardId1->J5 == $play && $resultsBoardId1->J7 == $play)
         ) {
             $this->haveWin = true;
-            connectDB::getDb()->query ($endGame);
+            banco\connectDB::getDb()->query ($endGame);
         } else {
             $this->haveWin = false;
         }

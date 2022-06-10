@@ -1,10 +1,16 @@
 <?php
-require '../../banco/DataBase.php';
+
+namespace createConnectionDbPost;
+
+include_once '../../../config/Constants.php';
+
+use banco;
+use mysqli_sql_exception;
 
 $config = json_decode(file_get_contents('php://input'));
 
 try {
-    $createDb = new connectDB();
+    $createDb = new banco\connectDB();
     $createDb->setHostName($config->host);
     $createDb->setUserName($config->username);
     $createDb->setPassword($config->password);

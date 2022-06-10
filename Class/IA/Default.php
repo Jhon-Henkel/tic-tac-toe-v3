@@ -1,11 +1,17 @@
 <?php
 
+namespace defaultIa;
+
+include_once __DIR__ . '/../../config/Constants.php';
+include_once __DIR__ . '/../../src/banco/DataBase.php';
+
+use banco;
+use constants;
+
 function padrao_o ($boardField): void
 {
-    require '../../src/banco/DataBase.php';
-
-    $selectGotOld = connectDB::getDb()->query ("SELECT got_old FROM board WHERE id_board = 1");
-    $selectIa = connectDB::getDb()->query ("SELECT IA FROM player WHERE id_player = 1");
+    $selectGotOld = banco\connectDB::getDb()->query ("SELECT got_old FROM board WHERE id_board = 1");
+    $selectIa = banco\connectDB::getDb()->query ("SELECT IA FROM player WHERE id_player = 1");
     $resultGotOld = $selectGotOld->fetch_object();
     $resultIa = $selectIa->fetch_object();
 
@@ -13,16 +19,16 @@ function padrao_o ($boardField): void
     $updateOTab1 = "UPDATE board SET " . $boardField . " = 'O' WHERE id_board = 1";
     $updateOTab2 = "UPDATE board SET " . $boardField . " = 'O' WHERE id_board = 2";
 
-    if (is_null($resultGotOld->deu_velha)) {
+    if (is_null($resultGotOld->got_old)) {
         $updateGotOld = "UPDATE board SET got_old = 1 WHERE id_board = 1";
     } else {
         $updateGotOld = "UPDATE board SET got_old = got_old +1 WHERE id_board = 1";
     }
 
-    if ($resultIa->IA == 1) {
-        connectDB::getDb()->query($updateXoPlay);
-        connectDB::getDb()->query($updateOTab1);
-        connectDB::getDb()->query($updateOTab2);
-        connectDB::getDb()->query($updateGotOld);
+    if ($resultIa->IA == constants\Constants::VALOR_IA_ON) {
+        banco\connectDB::getDb()->query($updateXoPlay);
+        banco\connectDB::getDb()->query($updateOTab1);
+        banco\connectDB::getDb()->query($updateOTab2);
+        banco\connectDB::getDb()->query($updateGotOld);
     }
-}//código padrão de todas as jogadas de O, que soma o deu velha, coloca ia como false e o/x como 1.
+}
