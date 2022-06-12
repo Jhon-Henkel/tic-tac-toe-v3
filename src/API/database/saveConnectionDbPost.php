@@ -1,7 +1,7 @@
 <?php
 namespace saveConfigDbPost;
 
-include_once '../../../config/Constants.php';
+require_once '../../../config/Constants.php';
 
 use constants;
 

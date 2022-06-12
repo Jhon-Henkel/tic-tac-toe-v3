@@ -1,7 +1,7 @@
 <?php
 namespace configConnectionDbGet;
 
-include_once '../../../config/Constants.php';
+require_once '../../../config/Constants.php';
 
 use constants\Constants as constants;
 

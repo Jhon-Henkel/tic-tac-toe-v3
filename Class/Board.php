@@ -2,8 +2,8 @@
 
 namespace board;
 
-include_once __DIR__ . '/../config/Constants.php';
-include_once __DIR__ . '/../src/banco/DataBase.php';
+require_once __DIR__ . '/../config/Constants.php';
+require_once __DIR__ . '/../src/banco/DataBase.php';
 
 use banco\connectDb;
 use constants\Constants;
@@ -38,7 +38,7 @@ class Board
 
         if ($whoPlay->X_O) {
             ?>
-                Clique no local para <b><span class='<?php echo strtolower($xo) ?>'> <?php echo $xo ?> </span></b>':</br>
+                Clique no local para <b><span class='<?php echo strtolower($xo) ?>'> <?php echo $xo ?> </span></b>:</br>
             <?php
         }
 
@@ -57,9 +57,9 @@ class Board
             }
 
             ?>
-            <form class="btn" method="post" action="../view/lets-play.php">
-                <input type="hidden" name="X" value="<?php echo $position ?>">
-                <button class="btn" type="submit"> <?php echo $field ?></button>
+            <form class="btn" name="formPlay" ng-controller="ticTacToeLetsPlayCtrl">
+                <input type="hidden" ng-init="play.<?php echo $xo ?> = <?php echo $position ?>">
+                <button class="btn" ng-on-click="sendPlay(play)"> <?php echo $field ?></button>
             </form>
             <?php
             }

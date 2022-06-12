@@ -2,12 +2,12 @@
 
 namespace iaPlay;
 
-include_once __DIR__ . '/../../config/Constants.php';
-include_once __DIR__ . '/../../src/banco/DataBase.php';
-include_once __DIR__ . '/../EndGame.php';
-include_once __DIR__ . '/Default.php';
-include_once __DIR__ . '/Attack.php';
-include_once __DIR__ . '/Defend.php';
+require_once __DIR__ . '/../../config/Constants.php';
+require_once __DIR__ . '/../../src/banco/DataBase.php';
+require_once __DIR__ . '/../EndGame.php';
+require_once __DIR__ . '/Default.php';
+require_once __DIR__ . '/Attack.php';
+require_once __DIR__ . '/Defend.php';
 
 use banco;
 use endGame;

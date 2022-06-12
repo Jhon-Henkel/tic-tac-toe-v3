@@ -1,8 +1,8 @@
 <?php
 namespace userPlay;
 
-include_once __DIR__ . '/../../config/Constants.php';
-include_once __DIR__ . '/../../src/banco/DataBase.php';
+require_once __DIR__ . '/../../config/Constants.php';
+require_once __DIR__ . '/../../src/banco/DataBase.php';
 
 use banco\connectDB;
 use constants\Constants;
@@ -11,7 +11,8 @@ class UserPlay
 {
     public function play($play): void
     {
-        echo 'play';
+        echo '<script>alert("aaa")</script>';
+        
         $selectPlayer = connectDB::getDb()->query ("SELECT * FROM player WHERE id_player = 1");
         $selectBoardId1 = connectDB::getDb()->query ("SELECT * FROM board WHERE id_board = 1");
         $resultsPlayer = $selectPlayer->fetch_object();
@@ -28,7 +29,6 @@ class UserPlay
         $setOTrue = "UPDATE player SET X_O = 2 WHERE id_player = 1";
 
         for ($position = 1; $position <= 9; $position++) {
-            echo 'position';
             $field = Constants::STRING_TABULEIRO . $position;
             if ($play == $position && $resultsBoard->$field == $position) {
                 $updateXBoardId1 = "UPDATE board SET " . $field . " = 'X' WHERE id_board = 1";
@@ -39,7 +39,6 @@ class UserPlay
                     $resultsPlayer->qtd_players == Constants::VALOR_SINGLE_PLAYER
                     && $resultsPlayer->X_O == Constants::VALOR_X
                 ) {
-                    echo 'play x';
                     connectDB::getDb()->query ($gotOld);
                     connectDB::getDb()->query ($setXtoNullIaTrue);
                     connectDB::getDb()->query ($updateXBoardId1);

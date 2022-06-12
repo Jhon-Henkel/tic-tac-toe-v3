@@ -1,8 +1,8 @@
 <?php
 namespace invalidPlay;
 
-include_once __DIR__ . '/../config/Constants.php';
-include_once __DIR__ . '/../src/banco/DataBase.php';
+require_once __DIR__ . '/../config/Constants.php';
+require_once __DIR__ . '/../src/banco/DataBase.php';
 
 use banco;
 use constants;

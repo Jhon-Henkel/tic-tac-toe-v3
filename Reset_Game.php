@@ -2,7 +2,7 @@
 
 namespace resetGame;
 
-include_once __DIR__ . '/src/banco/DataBase.php';
+require_once __DIR__ . '/src/banco/DataBase.php';
 
 use banco\connectDB;
 

@@ -2,7 +2,7 @@
 
 namespace initialGamePost;
 
-include_once __DIR__ . '/../banco/DataBase.php';
+require_once __DIR__ . '/../banco/DataBase.php';
 
 use banco\connectDB;
 

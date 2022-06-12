@@ -2,14 +2,14 @@
 
 namespace letsPlay;
 
-include_once __DIR__ . '/../config/Constants.php';
-include_once __DIR__ . '/../src/banco/DataBase.php';
-include_once __DIR__ . '/../Class/Board.php';
-include_once __DIR__ . '/../Class/InvalidPlay.php';
-include_once __DIR__ . '/../Class/Player/UserPlay.php';
-include_once __DIR__ . '/../Class/IA/IaPlay.php';
-include_once __DIR__ . '/../Class/EndGame.php';
-include_once __DIR__ . '/../Class/Reset.php';
+require_once __DIR__ . '/../config/Constants.php';
+require_once __DIR__ . '/../src/banco/DataBase.php';
+require_once __DIR__ . '/../Class/Board.php';
+require_once __DIR__ . '/../Class/InvalidPlay.php';
+require_once __DIR__ . '/../Class/Player/UserPlay.php';
+require_once __DIR__ . '/../Class/IA/IaPlay.php';
+require_once __DIR__ . '/../Class/EndGame.php';
+require_once __DIR__ . '/../Class/Reset.php';
 
 use banco\connectDB;
 use board\Board;
@@ -54,6 +54,10 @@ if ($result->qtd_players == Constants::VALOR_SINGLE_PLAYER){
     ?>
         <b>Dificuldade da IA: </b><span class='vermelho'> <?php echo $difficulty ?> </span><br><br>
     <?php
+
+    $d = file_get_contents('php://input');
+    echo $d;
+
     $invalidPlay->jogadaInvalida($x, $o);
 
     if (!is_null($x)) {
