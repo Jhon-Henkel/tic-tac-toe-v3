@@ -1,4 +1,6 @@
-# Jogo-da-velha-V3
+# Jogo da velha Versão 3
+
+# Projeto em andamento, estou fazendo mais alguns cursos antes de finalizar este projeto.
 
 Nesta versão, temos uma repaginada no visual, organização de código por classes em POO, armazenamento de informações via banco de dados (na versão anterior era por variavel de sessão).
 
