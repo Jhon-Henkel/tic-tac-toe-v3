@@ -1,0 +1,21 @@
+{
+    "name": "jhowr/jogo-da-velha-v3",
+    "description": "Jogo da velha",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Jhowr\\JogoDaVelhaV3\\": "src/",
+            "core\\": "core/"
+        },
+        "files": [
+            "config.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Jhonatan Henkel",
+            "email": "jhowrf@gmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -1,0 +1,47 @@
+<h1>
+    <span class="x"><b>--X</b></span>
+    <span class="o"><b>O </b></span>
+    Jogo da velha
+    <span class="o"><b> O</b></span>
+    <span class="x"><b>X--</b></span>
+</h1>
+
+<form class="center" name="gameForm">
+    <fieldset class="inicio">
+        <legend>Modo de jogo:</legend>
+
+        <div class="btn-group btn-full" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" ng-model="game.player" id="singlePlayer"
+                    autocomplete="off" ng-value="1" ng-checked="true">
+            <label class="btn btn-outline-primary" for="singlePlayer">Single Player</label>
+
+            <input type="radio" class="btn-check" ng-model="game.player" id="2players"
+                    autocomplete="off" ng-value="2">
+            <label class="btn btn-outline-primary" for="2players">Multi Player Local</label>
+        </div>
+
+        <div ng-show="game.player != 2">
+            <legend>Dificuldade:</legend>
+            <input type="range" class="form-range" ng-model="game.difficulty" min="1" max="3" id="difficulty">
+            <label for="difficulty" class="form-label"></label>
+        </div>
+
+        <legend>Quem começa?</legend>
+
+        <div class="btn-group btn-full" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" ng-model="game.init" id="initX"
+                    autocomplete="off" ng-value="1">
+            <label class="btn btn-outline-primary" for="initX">X</label>
+
+            <input type="radio" class="btn-check" ng-model="game.init" id="initO"
+                    autocomplete="off" ng-value="2">
+            <label class="btn btn-outline-primary" for="initO">O</label>
+
+            <input type="radio" class="btn-check" ng-model="game.init" id="initRand"
+                    autocomplete="off" ng-value="3" ng-checked="true">
+            <label class="btn btn-outline-primary" for="initRand">Tanto faz!!!</label>
+        </div>
+    </fieldset>
+    <br>
+    <button class="btn btn-outline-dark btn-sm btn-full" ng-on-click="letsStart(game)">Bora Jogar!</button>
+</form>
