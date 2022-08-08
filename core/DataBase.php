@@ -1,6 +1,6 @@
 <?php
 
-namespace core\classes;
+namespace core;
 
 use Exception;
 use PDO;
@@ -53,7 +53,7 @@ class DataBase
                 $pdo->execute();
             }
 
-            $results = $pdo->fetchall(PDO::FETCH_CLASS);
+            $results = $pdo->fetchall(PDO::FETCH_ASSOC);
 
         }catch (\PDOException $exception) {
             return false;
@@ -149,26 +149,16 @@ class DataBase
 
     /**
      * @throws Exception
-     * query genérica
      */
-    public function statement($sql, $params = null)
+    public function truncate($sql)
     {
         $sql = trim($sql);
-
-        if (preg_match('/^(INSERT|UPDATE|DELETE|SELECT)/i', $sql)){
-            throw new Exception('Base de dados não é válida para esse método');
-        }
 
         $this->connectDb();
 
         try {
             $pdo = $this->connectDb->prepare($sql);
-
-            if (!empty($params)) {
-                $pdo->execute($params);
-            } else {
-                $pdo->execute();
-            }
+            $pdo->execute();
         } catch (\PDOException $exception) {
             return false;
         }

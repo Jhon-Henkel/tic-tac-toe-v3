@@ -81,7 +81,7 @@ h1 {
 }
 
 .background_grade {
-    background-image: url("images/grade.png");
+    background-image: url("../images/grade.png");
     height: 216px;
     width: 234px;
     margin-left: 166px;
@@ -126,4 +126,14 @@ h1 {
 .shadow-border {
     box-shadow: 0 0 1em black;
     border-radius: 5px;
+}
+
+.btn-board {
+    width: 62px;
+    height: 52px;
+    margin-top: 11px;
+    margin-left: 1px;
+    background-color: transparent;
+    border-color: red;
+    border-radius: 29px;
 }

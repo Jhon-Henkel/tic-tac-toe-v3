@@ -1,0 +1,17 @@
+<div class="mb-3">
+    <strong>Dificuldade da IA: </strong>
+    <span class='vermelho'>{{difficultyLevel}}</span>
+</div>
+
+<div class="mb-3">
+    Clique no local para
+    <strong class="{{whosPlay}}">
+        <i class="fa-solid fa-{{whosPlay}}"></i>
+    </strong>:
+</div>
+
+<div class="background_grade mb-3">
+    <form class="btn" name="formPlay" ng-controller="ticTacToeSinglePlayerCtrl">
+        <div ng-include="'core/views/snippets/board.html'"></div>
+    </form>
+</div>

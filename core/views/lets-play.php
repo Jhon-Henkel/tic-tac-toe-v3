@@ -2,8 +2,8 @@
 
 namespace letsPlay;
 
-use core\classes\DataBase;
 use board\Board;
+use core\DataBase;
 use invalidPlay\InvalidPlay;
 use userPlay\UserPlay;
 use iaPlay\IaPlay;
@@ -11,7 +11,7 @@ use endGame\EndGame;
 use reset\Reset;
 
 $db = new DataBase();
-$selectModeAndDifficulty = $db->select ("SELECT X_O, qtd_players, difficulty FROM player WHERE id_player = 1");
+$selectModeAndDifficulty = $db->select("SELECT X_O, qtd_players, difficulty FROM player WHERE id_player = 1");
 
 $result = $selectModeAndDifficulty->fetch_object();
 

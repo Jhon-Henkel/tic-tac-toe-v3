@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS player (
     difficulty varchar(30) DEFAULT NULL,
     qtd_players varchar(3) DEFAULT NULL,
     PRIMARY KEY (`id_player`))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- criar tabela tabuleiro --
 CREATE TABLE IF NOT EXISTS board (
@@ -27,4 +27,4 @@ CREATE TABLE IF NOT EXISTS board (
     board_done varchar(6) DEFAULT NULL,
     form varchar(5) DEFAULT NULL,
     PRIMARY KEY (`id_board`))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

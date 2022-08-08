@@ -17,5 +17,8 @@
             "email": "jhowrf@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "kint-php/kint": "^4.1",
+        "ext-pdo": "*"
+    }
 }

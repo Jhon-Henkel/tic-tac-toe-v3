@@ -30,7 +30,7 @@ class Board
             $updateFormPlayer = "UPDATE board SET form = 1 WHERE id_board = 1";
             DataBase::getDb()->query ($updateFormPlayer);
             $xo = config::STRING_X;
-        } elseif ($whoPlay->X_O == config::VALOR_O) {
+        } elseif ($whoPlay->X_O == VALOR_O) {
             $updateFormPlayer = "UPDATE board SET form = 0 WHERE id_board = 1";
             DataBase::getDb()->query ($updateFormPlayer);
             $xo = config::STRING_O;
