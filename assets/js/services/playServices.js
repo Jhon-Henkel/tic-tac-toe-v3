@@ -17,7 +17,7 @@ ticTacToe.factory("playServices", function ($http, configs, $location) {
         })
     }
 
-    const invalidPlay = function () {
+    const _invalidPlay = function () {
         alert('Jogada inválida, escolha outra posição!')
     }
 
@@ -31,7 +31,7 @@ ticTacToe.factory("playServices", function ($http, configs, $location) {
             }
         }
 
-        invalidPlay();
+        _invalidPlay();
         return false
     }
 
@@ -54,11 +54,31 @@ ticTacToe.factory("playServices", function ($http, configs, $location) {
         }
     }
 
+    function _getWhoPlay(whoPlay) {
+
+        if (whoPlay === configs.randCode) {
+            let rand = Math.floor(Math.random() * 2)
+            whoPlay = String(rand + 1);
+        }
+
+        switch (whoPlay) {
+            case configs.xCode:
+                return configs.xString;
+            case configs.oCode:
+                return configs.oString;
+            case configs.oString:
+                return configs.xString;
+            case configs.xString:
+                return configs.oString;
+        }
+    }
+
     return {
         resetGameTabAndPlayer: _resetGame,
         validateAndPlay: _validateAndPlay,
         getDifficulty: _getDifficulty,
         postPlay: _postPlay,
+        getWhoPlay: _getWhoPlay,
     }
 
 });

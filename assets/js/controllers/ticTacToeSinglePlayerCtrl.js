@@ -7,26 +7,7 @@ ticTacToe.controller("ticTacToeSinglePlayerCtrl", function ($scope, boardOne, bo
 
     if (!$scope.whosPlay) {
         //o quem joga está ficando sempre aleatório devido à linha abaixo, sempre que da o reload da rota, zera o $scope dessa variavel
-        $scope.whosPlay = getWhoPlay($scope.playerData.X_O);
-    }
-
-    function getWhoPlay(whoPlay) {
-
-        if (whoPlay === configs.randCode) {
-            let rand = Math.floor(Math.random() * 2)
-            whoPlay = String(rand + 1);
-        }
-
-        switch (whoPlay) {
-            case configs.xCode:
-                return configs.xString;
-            case configs.oCode:
-                return configs.oString;
-            case configs.oString:
-                return configs.xString;
-            case configs.xString:
-                return configs.oString;
-        }
+        $scope.whosPlay = playServices.getWhoPlay($scope.playerData.X_O);
     }
 
     $scope.resetGame = function () {
