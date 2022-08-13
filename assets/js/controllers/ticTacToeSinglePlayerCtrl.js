@@ -6,7 +6,7 @@ ticTacToe.controller("ticTacToeSinglePlayerCtrl", function ($scope, boardOne, bo
     $scope.difficultyLevel = playServices.getDifficulty($scope.playerData.difficulty);
 
     if (!$scope.whosPlay) {
-        //o quem joga está ficando sempre aleatódio devido a linha abaixo, sempre que da o reload da rota, zera o scope dessa variavel
+        //o quem joga está ficando sempre aleatório devido à linha abaixo, sempre que da o reload da rota, zera o $scope dessa variavel
         $scope.whosPlay = getWhoPlay($scope.playerData.X_O);
     }
 
