@@ -24,4 +24,15 @@ class Board
         $db = new DataBase();
         return $db->select('SELECT * FROM board WHERE id_board = 2');
     }
+
+    /**
+     * @throws Exception
+     */
+    public function resetGame(): bool
+    {
+        $db = new DataBase();
+        $db->truncate('TRUNCATE TABLE player');
+        $db->truncate('TRUNCATE TABLE board');
+        return true;
+    }
 }

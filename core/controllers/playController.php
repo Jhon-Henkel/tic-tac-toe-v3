@@ -11,5 +11,5 @@ if ($_GET['method'] == 'postPositionPlay') {
     $postData = json_decode(file_get_contents('php://input'), true);
 
     $play->postPositionPlay($postData);
-//    echo json_encode($play->postPositionPlay());
+//    echo json_encode($play->postPositionPlay($postData));
 }

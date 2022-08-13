@@ -1,6 +1,7 @@
-ticTacToe.factory("playServices", function ($http, configs) {
+ticTacToe.factory("playServices", function ($http, configs, $location) {
 
     const playController = configs.coreDefaultPath + 'controllers/playController.php';
+    const boardController = configs.coreDefaultPath + 'controllers/boardController.php';
 
     const _postPlay = function (position, value) {
 
@@ -17,95 +18,47 @@ ticTacToe.factory("playServices", function ($http, configs) {
     }
 
     const invalidPlay = function () {
-        alert('Jogada inválida')
+        alert('Jogada inválida, escolha outra posição!')
     }
 
     const _validateAndPlay = function (board, play, value) {
 
-        switch (play) {
-            case '1':
-                if (board.J1 !== '1') {
-                    invalidPlay();
-                    return false
-                } else {
-                    _postPlay('J1', value);
+        for (let i = 1; i <= 9; i++) {
+            switch (play) {
+                case String(i):
+                    _postPlay('J' + i, value)
                     return true
-                }
-            case '2':
-                if (board.J2 !== '2') {
-                    invalidPlay();
-                    return false
-                } else {
-                    _postPlay('J2', value);
-                    return true
-                }
-            case '3':
-                if (board.J3 !== '3') {
-                    invalidPlay();
-                    return false
-                } else {
-                    _postPlay('J3', value);
-                    return true
-                }
-            case '4':
-                if (board.J4 !== '4') {
-                    invalidPlay();
-                    return false
-                } else {
-                    _postPlay('J4', value);
-                    return true
-                }
-            case '5':
-                if (board.J5 !== '5') {
-                    invalidPlay();
-                    return false
-                } else {
-                    _postPlay('J5', value);
-                    return true
-                }
-            case '6':
-                if (board.J6 !== '6') {
-                    invalidPlay();
-                    return false
-                } else {
-                    _postPlay('J6', value);
-                    return true
-                }
-            case '7':
-                if (board.J7 !== '7') {
-                    invalidPlay();
-                    return false
-                } else {
-                    _postPlay('J7', value);
-                    return true
-                }
-            case '8':
-                if (board.J8 !== '8') {
-                    invalidPlay();
-                    return false
-                } else {
-                    _postPlay('J8', value);
-                    return true
-                }
-            case '9':
-                if (board.J9 !== '9') {
-                    invalidPlay();
-                    return false
-                } else {
-                    _postPlay('J9', value);
-                    return true
-                }
+            }
+        }
+
+        invalidPlay();
+        return false
+    }
+
+    const _resetGame = function () {
+        if (confirm('Deseja realmente reiniciar o jogo e voltar ao menu?')) {
+            $http.get(boardController + '?method=resetGame').then(function () {
+                $location.path('/home');
+            })
         }
     }
 
-    const _resetBoard = function () {
-
+    function _getDifficulty(difficulty) {
+        switch (difficulty) {
+            case configs.easyCode:
+                return configs.easyString;
+            case configs.mediumCode:
+                return configs.mediumString
+            case configs.hardCode:
+                return configs.hardString
+        }
     }
 
     return {
-        postPlay: _postPlay,
+        resetGameTabAndPlayer: _resetGame,
         validateAndPlay: _validateAndPlay,
-        resetBoard: _resetBoard,
+        getDifficulty: _getDifficulty,
+        postPlay: _postPlay,
     }
 
 });
