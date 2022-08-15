@@ -1,4 +1,4 @@
-ticTacToe.controller("ticTacToeSinglePlayerCtrl", function ($scope, boardOne, boardTwo, player, configs, playServices, $route) {
+ticTacToe.controller("ticTacToeSinglePlayerCtrl", function ($scope, boardOne, boardTwo, player, configs, playServices, boardServices, $route) {
 
     $scope.boardOneData = boardOne.data;
     $scope.boardTwoData = boardTwo.data;
@@ -11,12 +11,14 @@ ticTacToe.controller("ticTacToeSinglePlayerCtrl", function ($scope, boardOne, bo
     }
 
     $scope.resetGame = function () {
-        playServices.resetGameTabAndPlayer()
+        boardServices.resetGameTabAndPlayer()
     }
 
     $scope.validateAndPlay = function (play) {
         if (playServices.validateAndPlay($scope.boardOneData, play, $scope.whosPlay)) {
-            $route.reload();
+            boardServices.somebodyWin();
+            boardServices.gotOld();
+            // $route.reload();
         }
     }
 });

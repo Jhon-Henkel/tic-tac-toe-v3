@@ -1,7 +1,6 @@
-ticTacToe.factory("playServices", function ($http, configs, $location) {
+ticTacToe.factory("playServices", function ($http, configs) {
 
     const playController = configs.coreDefaultPath + 'controllers/playController.php';
-    const boardController = configs.coreDefaultPath + 'controllers/boardController.php';
 
     const _postPlay = function (position, value) {
 
@@ -35,14 +34,6 @@ ticTacToe.factory("playServices", function ($http, configs, $location) {
         return false
     }
 
-    const _resetGame = function () {
-        if (confirm('Deseja realmente reiniciar o jogo e voltar ao menu?')) {
-            $http.get(boardController + '?method=resetGame').then(function () {
-                $location.path('/home');
-            })
-        }
-    }
-
     function _getDifficulty(difficulty) {
         switch (difficulty) {
             case configs.easyCode:
@@ -74,7 +65,6 @@ ticTacToe.factory("playServices", function ($http, configs, $location) {
     }
 
     return {
-        resetGameTabAndPlayer: _resetGame,
         validateAndPlay: _validateAndPlay,
         getDifficulty: _getDifficulty,
         postPlay: _postPlay,
