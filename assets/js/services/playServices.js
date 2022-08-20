@@ -1,39 +1,5 @@
 ticTacToe.factory("playServices", function ($http, configs) {
 
-    const playController = configs.coreDefaultPath + 'controllers/playController.php';
-
-    const _postPlay = function (position, value) {
-
-        let data = {
-            position: position,
-            value: value
-        }
-
-        $http.post(playController + '?method=postPositionPlay', data).then(function () {
-            return true;
-        }, function () {
-            return false
-        })
-    }
-
-    const _invalidPlay = function () {
-        alert('Jogada inválida, escolha outra posição!')
-    }
-
-    const _validateAndPlay = function (board, play, value) {
-
-        for (let i = 1; i <= 9; i++) {
-            switch (play) {
-                case String(i):
-                    _postPlay('J' + i, value)
-                    return true
-            }
-        }
-
-        _invalidPlay();
-        return false
-    }
-
     function _getDifficulty(difficulty) {
         switch (difficulty) {
             case configs.easyCode:
@@ -65,9 +31,7 @@ ticTacToe.factory("playServices", function ($http, configs) {
     }
 
     return {
-        validateAndPlay: _validateAndPlay,
         getDifficulty: _getDifficulty,
-        postPlay: _postPlay,
         getWhoPlay: _getWhoPlay,
     }
 

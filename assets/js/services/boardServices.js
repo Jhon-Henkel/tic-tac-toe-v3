@@ -1,32 +1,30 @@
 ticTacToe.factory("boardServices", function ($http, configs, $location) {
 
-    const boardController = configs.coreDefaultPath + 'controllers/boardController.php';
-
     const _getBoardOne = function () {
-        return $http.get(boardController + '?method=getBoardOneData');
+        return $http.get(configs.ajaxUrl + '?method=getBoardOneData');
     }
 
     const _getBoardTwo = function () {
-        return $http.get(boardController + '?method=getBoardTwoData');
+        return $http.get(configs.ajaxUrl + '?method=getBoardTwoData');
     }
 
     const _resetGame = function () {
         if (confirm('Deseja realmente reiniciar o jogo e voltar ao menu?')) {
-            $http.get(boardController + '?method=resetGame').then(function () {
+            $http.get(configs.ajaxUrl + '?method=resetGame').then(function () {
                 $location.path('/home');
             })
         }
     }
 
     const _gameOver = function (message) {
-        $http.get(boardController + '?method=resetGame').then(function () {
+        $http.get(configs.ajaxUrl + '?method=resetGame').then(function () {
             alert('Game Over! \n' + message)
             $location.path('/home');
         })
     }
 
     function _somebodyWin() {
-        $http.get(boardController + '?method=somebodyWin').then(function (response) {
+        $http.get(configs.ajaxUrl + '?method=somebodyWin').then(function (response) {
             if (response.data.win === 'x') {
                 _gameOver('Parabéns jogador de X você ganhou!')
             } else if (response.data.win === 'o') {
@@ -36,7 +34,7 @@ ticTacToe.factory("boardServices", function ($http, configs, $location) {
     }
 
     function _gotOld() {
-        $http.get(boardController + '?method=gotOld').then(function (response) {
+        $http.get(configs.ajaxUrl + '?method=gotOld').then(function (response) {
             if (response.data.gotOldValue === '8') {
                 _gameOver('Deu velha!');
             }
