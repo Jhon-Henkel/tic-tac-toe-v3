@@ -24,48 +24,23 @@ ticTacToe.controller("ticTacToeSinglePlayerCtrl", function ($http, $scope, board
                             value: $scope.whosPlay
                         }
 
-                        $http.post(configs.ajaxUrl + '?method=postPositionPlay', data).then(function () {
-
+                        for (let count1 = 1; count1 <= 9; count1++) {
                             switch (data.position) {
-                                case 'J1':
-                                    $scope.boardTwoData.J1 = data.value
-                                    break;
-                                case 'J2':
-                                    $scope.boardTwoData.J2 = data.value
-                                    break;
-                                case 'J3':
-                                    $scope.boardTwoData.J3 = data.value
-                                    break;
-                                case 'J4':
-                                    $scope.boardTwoData.J4 = data.value
-                                    break;
-                                case 'J5':
-                                    $scope.boardTwoData.J5 = data.value
-                                    break;
-                                case 'J6':
-                                    $scope.boardTwoData.J6 = data.value
-                                    break;
-                                case 'J7':
-                                    $scope.boardTwoData.J7 = data.value
-                                    break;
-                                case 'J8':
-                                    $scope.boardTwoData.J8 = data.value
-                                    break;
-                                case 'J9':
-                                    $scope.boardTwoData.J9 = data.value
-                                    break;
+                                case 'J' + String(count1):
+                                    if ($scope.boardTwoData['J' + count1] !== null) {
+                                        alert('Jogada inválida, escolha outra posição!')
+                                    } else {
+                                        $http.post(configs.ajaxUrl + '?method=postPositionPlay', data).then(function () {
+                                            $scope.boardTwoData['J' + count1] = data.value
+                                            $scope.whosPlay = playServices.getWhoPlay(data.value);
+                                        })
+                                    }
+                                break;
                             }
-
-                            $scope.whosPlay = playServices.getWhoPlay(data.value);
-
-                            console.log(data)
-                        })
+                        }
+                    console.log(data)
                 }
             }
-
-        // alert('Jogada inválida, escolha outra posição!')
-
-        // return false
         // boardServices.somebodyWin();
         // boardServices.gotOld();
     }
