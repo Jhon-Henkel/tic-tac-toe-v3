@@ -1,5 +1,6 @@
 -- criar base de dados --
 CREATE DATABASE IF NOT EXISTS tic_tac_toe;
+USE tic_tac_toe;
 
 -- criar tabela players --
 CREATE TABLE IF NOT EXISTS player (
