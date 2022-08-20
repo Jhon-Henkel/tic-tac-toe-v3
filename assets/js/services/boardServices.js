@@ -44,12 +44,18 @@ ticTacToe.factory("boardServices", function ($http, configs, $location) {
         return false
     }
 
-    function _gotOld() {
-        $http.get(configs.ajaxUrl + '?method=gotOld').then(function (response) {
-            if (response.data.gotOldValue === '8') {
-                _gameOver('Deu velha!');
+    function _gotOld(board) {
+
+        if (
+            board.J1 !== null && board.J2 !== null && board.J3 !== null
+            && board.J4 !== null && board.J5 !== null && board.J6 !== null
+            && board.J7 !== null && board.J8 !== null && board.J9 !== null
+        ) {
+            if (!this.somebodyWin(board)) {
+                return true
             }
-        })
+        }
+        return false
     }
 
     return {
@@ -57,7 +63,7 @@ ticTacToe.factory("boardServices", function ($http, configs, $location) {
         somebodyWin: _somebodyWin,
         getBoardOne: _getBoardOne,
         getBoardTwo: _getBoardTwo,
-        gotOld: _gotOld,
         gameOver: _gameOver,
+        gotOld: _gotOld,
     };
 });

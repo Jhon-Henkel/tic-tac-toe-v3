@@ -1,12 +1,12 @@
 ticTacToe.controller("ticTacToeSinglePlayerCtrl", function ($http, $scope, boardOne, boardTwo, player, configs, playServices, boardServices) {
 
-    $scope.boardOneData = boardOne.data;
-    $scope.boardTwoData = boardTwo.data;
-    $scope.playerData = player.data;
-    $scope.difficultyLevel = playServices.getDifficulty($scope.playerData.difficulty);
+    $scope.boardOneData = boardOne.data
+    $scope.boardTwoData = boardTwo.data
+    $scope.playerData = player.data
+    $scope.difficultyLevel = playServices.getDifficulty($scope.playerData.difficulty)
 
     if (!$scope.whosPlay) {
-        $scope.whosPlay = playServices.getWhoPlay($scope.playerData.X_O);
+        $scope.whosPlay = playServices.getWhoPlay($scope.playerData.X_O)
     }
 
     $scope.resetGame = function () {
@@ -32,15 +32,19 @@ ticTacToe.controller("ticTacToeSinglePlayerCtrl", function ($http, $scope, board
 
                         //valida se ja ganhou
                         if (boardServices.somebodyWin($scope.boardTwoData)) {
-                            boardServices.gameOver('Parabéns jogador de ' + $scope.whosPlay + ' você ganhou!')
+                            boardServices.gameOver('Parabéns jogador de ' + $scope.whosPlay.toUpperCase() + ' você ganhou!')
                         }
 
                         //valida se deu velha
+                        if (boardServices.gotOld($scope.boardTwoData)) {
+                            boardServices.gameOver('Deu velha, ninguém ganhou!')
+                        }
 
-                        $scope.whosPlay = playServices.getWhoPlay(data.value);
+                        $scope.whosPlay = playServices.getWhoPlay(data.value)
                     })
                 }
             }
         }
+        //jogada IA
     }
 });
