@@ -12,7 +12,6 @@ switch ($_GET['method']) {
         $postData = json_decode(file_get_contents('php://input'), true);
         $play->postPositionPlay($postData);
         break;
-
     case 'getBoardOneData':
         $board = new Board();
         echo json_encode($board->getBoardOneData());

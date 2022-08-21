@@ -19,4 +19,7 @@ ticTacToe.constant("configs", {
     easyCode:       "1",
     mediumCode:     "2",
     hardCode:       "3",
+
+    //messages
+    gotOld:         "Deu velha, ninguém ganhou!",
 });

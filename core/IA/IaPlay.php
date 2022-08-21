@@ -20,9 +20,9 @@ class IaPlay
 {
     public function IaPlay (): void
     {
-        $end    = new endGame\EndGame();
-        $defend = new defend\Defend();
-        $attack = new attack\Attack();
+        $end    = new EndGame();
+        $defend = new Defend();
+        $attack = new Attack();
 
         $end->setHaveWin(constants\config::STRING_X);
 
@@ -34,13 +34,13 @@ class IaPlay
 
         $setIaFalse = "UPDATE player SET IA = false WHERE id_player = 1";
 
-        if ($ResultPlayer->difficulty == constants\config::VALOR_FACIL) {
+        if ($ResultPlayer->difficulty == VALOR_FACIL) {
             $ia = $ResultPlayer->IA;
             while ($ia == 1) {
                 $attack->attack();
                 $random = rand(1, 9);
                 for ($j = 1; $j <= 9; $j++) {
-                    $board = constants\config::STRING_TABULEIRO . $j;
+                    $board = STRING_TABULEIRO . $j;
                     if ($random == $j && $resultBoard->$board == $j) {
                         defaultIa\padrao_o($board);
                         $ia = null;
