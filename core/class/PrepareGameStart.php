@@ -20,6 +20,9 @@ class PrepareGameStart
         }
     }
 
+    /**
+     * @throws Exception
+     */
     public function prepareGameTables($initialGamePost)
     {
         $db = new DataBase();

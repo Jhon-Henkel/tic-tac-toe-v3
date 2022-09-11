@@ -25,28 +25,39 @@ ticTacToe.factory("computerPlay", function ($http, configs, boardServices, $loca
 
     function playEasy(board) {
 
-    if (validations(board)) {
-        let ia = true
+        if (validations(board)) {
+            let ia = true
 
-        while (ia === true) {
+            while (ia === true) {
+                let rand = Math.floor(Math.random() * 9 + 1)
 
-            let rand = Math.floor(Math.random() * 8)
-
-            for (let count = 1; count <= 9; count ++) {
                 if (board['J' + String(rand)] === null) {
-                    return rand
+                    ia = false;
+                    return
                 }
             }
         }
     }
-    return false
-    }
 
     function playMedium(board) {
+        if (validations(board)) {
+            let ia = true
 
+            while (ia === true) {
+
+            }
+        }
     }
 
     function playHard(board) {
+
+    }
+
+    function defend() {
+
+    }
+
+    function attack() {
 
     }
 
