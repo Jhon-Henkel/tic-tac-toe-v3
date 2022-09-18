@@ -7,7 +7,7 @@ html {
 }
 
 .conteudo::before {
-    content: "## Jogo da velha By Jhon ##";
+    content: "## Jogo da velha ##";
     font: 10pt Arial;
     font-weight: bold;
     color: white;
@@ -136,4 +136,9 @@ h1 {
     background-color: transparent;
     border-color: red;
     border-radius: 29px;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: white;
 }

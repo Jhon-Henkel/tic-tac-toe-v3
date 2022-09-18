@@ -12,9 +12,9 @@ Deve-se colocar todos os arquivos dentro da pasta do seu servidor virtual, recom
 
 # Fazer:
 
-- Placar funcional.
 - CSS pelo bootstrap.
 - Colocar estrutura em um framework.
 - Otimizar o código.
 - Melhorar IA.
 - Modal no lugar do alert.
+- Quando a tabela já tiver registro ao iniciar o jogo, excluir os registros.

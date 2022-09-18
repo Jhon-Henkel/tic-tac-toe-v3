@@ -22,4 +22,7 @@ ticTacToe.constant("configs", {
 
     //messages
     gotOld:         "Deu velha, ninguém ganhou!",
+
+    //tabuleiro
+    tableString: "J",
 });
