@@ -25,21 +25,21 @@ ticTacToe.factory("boardServices", function ($http, configs, $location) {
 
     function _somebodyWin(board) {
 
-        let value = 'x'
+        let player = 'x'
         for (let count = 1; count <=2; count++) {
             if (
-                (board.J1 === value && board.J2 === value && board.J3 === value)
-                || (board.J4 === value && board.J5 === value && board.J6 === value)
-                || (board.J7 === value && board.J8 === value && board.J9 === value)
-                || (board.J1 === value && board.J4 === value && board.J7 === value)
-                || (board.J2 === value && board.J5 === value && board.J8 === value)
-                || (board.J3 === value && board.J6 === value && board.J9 === value)
-                || (board.J1 === value && board.J5 === value && board.J9 === value)
-                || (board.J3 === value && board.J5 === value && board.J7 === value)
+                (board[configs.topLeft] === player && board[configs.topMiddle] === player && board[configs.topRight] === player)
+                || (board[configs.middleLeft] === player && board[configs.middleMiddle] === player && board[configs.middleRight] === player)
+                || (board[configs.bottomLeft] === player && board[configs.bottomMiddle] === player && board[configs.bottomRight] === player)
+                || (board[configs.topLeft] === player && board[configs.middleLeft] === player && board[configs.bottomLeft] === player)
+                || (board[configs.topMiddle] === player && board[configs.middleMiddle] === player && board[configs.bottomMiddle] === player)
+                || (board[configs.topRight] === player && board[configs.middleRight] === player && board[configs.bottomRight] === player)
+                || (board[configs.topLeft] === player && board[configs.middleMiddle] === player && board[configs.bottomRight] === player)
+                || (board[configs.topRight] === player && board[configs.middleMiddle] === player && board[configs.bottomLeft] === player)
             ){
                 return true
             }
-            value = 'o'
+            player = configs.oString
         }
         return false
     }
@@ -47,9 +47,9 @@ ticTacToe.factory("boardServices", function ($http, configs, $location) {
     function _gotOld(board) {
 
         if (
-            board.J1 !== null && board.J2 !== null && board.J3 !== null
-            && board.J4 !== null && board.J5 !== null && board.J6 !== null
-            && board.J7 !== null && board.J8 !== null && board.J9 !== null
+            board[configs.topLeft] !== null && board[configs.topMiddle] !== null && board[configs.topRight] !== null
+            && board[configs.middleLeft] !== null && board[configs.middleMiddle] !== null && board[configs.middleRight] !== null
+            && board[configs.bottomLeft] !== null && board[configs.bottomMiddle] !== null && board[configs.bottomRight] !== null
         ) {
             if (!this.somebodyWin(board)) {
                 return true
@@ -58,8 +58,22 @@ ticTacToe.factory("boardServices", function ($http, configs, $location) {
         return false
     }
 
+    function _validateBoard(board, player) {
+        if (this.somebodyWin(board)) {
+            this.gameOver('Parabéns jogador de ' + player.toUpperCase() + ' você ganhou!')
+            return true
+        }
+
+        if (this.gotOld(board)) {
+            this.gameOver(configs.gotOld)
+            return true
+        }
+        return false
+    }
+
     return {
         resetGameTabAndPlayer: _resetGame,
+        validateBoard: _validateBoard,
         somebodyWin: _somebodyWin,
         getBoardOne: _getBoardOne,
         getBoardTwo: _getBoardTwo,

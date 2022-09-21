@@ -26,14 +26,8 @@ ticTacToe.controller("ticTacToeSinglePlayerCtrl", function ($http, $scope, board
 
     function validateBoard() {
         if (!itsEnd) {
-            if (boardServices.somebodyWin($scope.boardTwoData)) {
+            if (boardServices.validateBoard($scope.boardTwoData, $scope.whosPlay)) {
                 itsEnd = true
-                boardServices.gameOver('Parabéns jogador de ' + $scope.whosPlay.toUpperCase() + ' você ganhou!')
-            }
-
-            if (boardServices.gotOld($scope.boardTwoData)) {
-                itsEnd = true
-                boardServices.gameOver(configs.gotOld)
             }
         }
     }

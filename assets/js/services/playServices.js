@@ -1,9 +1,5 @@
 ticTacToe.factory("playServices", function ($http, configs) {
 
-    function _validateAndPlay(play) {
-
-    }
-
     function _getDifficulty(difficulty) {
         switch (difficulty) {
             case configs.easyCode:
@@ -35,7 +31,6 @@ ticTacToe.factory("playServices", function ($http, configs) {
     }
 
     return {
-        validateAndPlay: _validateAndPlay,
         getDifficulty: _getDifficulty,
         getWhoPlay: _getWhoPlay,
     }
