@@ -1,12 +1,11 @@
 ticTacToe.controller("ticTacToeSinglePlayerCtrl", function ($http, $scope, boardOne, boardTwo, player, configs, playServices, boardServices, computerPlay) {
 
+    $scope.playerData = player.data
     $scope.boardOneData = boardOne.data
     $scope.boardTwoData = boardTwo.data
-    $scope.playerData = player.data
+    $scope.difficultyLevel = playServices.getDifficulty($scope.playerData.difficulty)
 
-    //comentado pois foi fixado o id da dificuldade que estou desenvolvendo
-    // $scope.difficultyLevel = playServices.getDifficulty($scope.playerData.difficulty)
-    $scope.difficultyLevel = playServices.getDifficulty(String(2))
+    var itsEnd = false;
 
     if (!$scope.whosPlay) {
         $scope.whosPlay = playServices.getWhoPlay($scope.playerData.X_O)
@@ -16,7 +15,7 @@ ticTacToe.controller("ticTacToeSinglePlayerCtrl", function ($http, $scope, board
         boardServices.resetGameTabAndPlayer()
     }
 
-    if ($scope.whosPlay === 'o') {
+    if ($scope.whosPlay === configs.oString) {
         computerPlayFunction()
     }
 
@@ -26,12 +25,16 @@ ticTacToe.controller("ticTacToeSinglePlayerCtrl", function ($http, $scope, board
     }
 
     function validateBoard() {
-        if (boardServices.somebodyWin($scope.boardTwoData)) {
-            boardServices.gameOver('Parabéns jogador de ' + $scope.whosPlay.toUpperCase() + ' você ganhou!')
-        }
+        if (!itsEnd) {
+            if (boardServices.somebodyWin($scope.boardTwoData)) {
+                itsEnd = true
+                boardServices.gameOver('Parabéns jogador de ' + $scope.whosPlay.toUpperCase() + ' você ganhou!')
+            }
 
-        if (boardServices.gotOld($scope.boardTwoData)) {
-            boardServices.gameOver(configs.gotOld)
+            if (boardServices.gotOld($scope.boardTwoData)) {
+                itsEnd = true
+                boardServices.gameOver(configs.gotOld)
+            }
         }
     }
 
@@ -40,38 +43,32 @@ ticTacToe.controller("ticTacToeSinglePlayerCtrl", function ($http, $scope, board
         if (ia !== false) {
 
             let data = {
-                position: 'J' + String(ia),
-                value: 'o'
+                position: configs.tableString + String(ia),
+                value: configs.oString
             }
 
             populateData(data);
             validateBoard();
-
-            $scope.whosPlay = 'x'
+            $scope.whosPlay = configs.xString
         }
     }
 
     $scope.validateAndPlay = function (play) {
 
         for (let count = 1; count <= 9; count++) {
-            if (String(count) === play && $scope.whosPlay === 'x') {
+            if (String(count) === play && $scope.whosPlay === configs.xString) {
 
                 let data = {
-                    position: 'J' + count,
-                    value: 'x'
+                    position: configs.tableString + count,
+                    value: configs.xString
                 }
 
                 if ($scope.boardTwoData[data.position] !== null) {
-
                     alert('Jogada inválida, escolha outra posição!')
-
                 } else {
-
                     populateData(data);
                     validateBoard();
-
-                    $scope.whosPlay = 'o'
-
+                    $scope.whosPlay = configs.oString
                     computerPlayFunction()
                 }
             }

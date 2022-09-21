@@ -1,4 +1,4 @@
-ticTacToe.factory("computerPlay", function ($http, configs, boardServices, $location) {
+ticTacToe.factory("computerPlay", function ($http, configs, boardServices) {
 
     var ia = false;
 
@@ -14,15 +14,7 @@ ticTacToe.factory("computerPlay", function ($http, configs, boardServices, $loca
     }
 
     function validations(board) {
-        if (boardServices.somebodyWin(board)) {
-            return false
-        }
-
-        if (boardServices.gotOld(board)) {
-            boardServices.gameOver(configs.gotOld)
-        }
-
-        return true
+        return !(boardServices.somebodyWin(board) || boardServices.gotOld(board));
     }
 
     function playEasy(board) {
@@ -33,7 +25,7 @@ ticTacToe.factory("computerPlay", function ($http, configs, boardServices, $loca
             while (ia === true) {
                 let rand = Math.floor(Math.random() * 9 + 1)
 
-                if (board['J' + String(rand)] === null) {
+                if (board[configs.tableString + String(rand)] === null) {
                     ia = false;
                     return String(rand);
                 }
@@ -49,42 +41,36 @@ ticTacToe.factory("computerPlay", function ($http, configs, boardServices, $loca
                 let defended = defend(board);
 
                 if (defended) {
-                    console.log('caiu no defended ' + defended)
                     ia = false
                     return defended
                 }
 
-                if (ia === true) {
+                let rand = Math.floor(Math.random() * 2 + 1);
 
-                    let rand = Math.floor(Math.random() * 2 + 1);
+                if (rand === 1 && board[configs.bottomRight] === null) {
+                    ia = false
+                    return configs.positionBottomRight;
+                } else if (rand === 2 && board[configs.bottomLeft] === null) {
+                    ia = false
+                    return configs.positionBottomLeft;
+                } else {
+                    let position = Array(
+                        configs.positionTopRight,
+                        configs.positionTopLeft,
+                        configs.positionMiddleLeft,
+                        configs.positionBottomMiddle,
+                        configs.positionMiddleRight,
+                        configs.positionTopMiddle,
+                        configs.positionMiddleMiddle
+                    )
 
-                    if (rand === 1 && board.J9 === null) {
-                        ia = false
-                        return '9';
-                    } else if (rand === 2 && board.J7 === null) {
-                        ia = false
-                        return '7';
-                    } else if (ia === false) {
-                        break;
-                    } else {
-                        let position = Array(
-                            configs.positionTopRight,
-                            configs.positionTopLeft,
-                            configs.positionMiddleLeft,
-                            configs.positionBottomMiddle,
-                            configs.positionMiddleRight,
-                            configs.positionTopMiddle,
-                            configs.positionMiddleMiddle
-                        )
-
-                        for (let i = 0; i < position.length; i++) {
-                            if (board[configs.tableString + String(position[i])] === null) {
-                                ia = false
-                                return String(position[i]);
-                            }
+                    for (let i = 0; i < position.length; i++) {
+                        if (board[configs.tableString + String(position[i])] === null) {
+                            ia = false
+                            return String(position[i]);
                         }
-                        ia = false
                     }
+                    ia = false
                 }
             }
         }
@@ -96,158 +82,168 @@ ticTacToe.factory("computerPlay", function ($http, configs, boardServices, $loca
 
             ia = true
 
-            attack(board)
-            defend(board)
+            while (ia === true) {
+                let attacked = attack(board);
+                let defended = defend(board);
 
-            if (ia === true) {
+                if (attacked) {
+                    ia = false
+                    return attacked
+                }
 
-                for (let j = 0; j <= 9; j++) {
-                    let position = configs.tableString + j;
+                if (defended) {
+                    ia = false
+                    return defended
+                }
 
-                    if (ia === true) {
-                        break;
-                    } else if (board[position] === null) {
-                        return String(j);
+                if (ia === true) {
+                    let position = Array(
+                        configs.positionBottomRight,
+                        configs.positionTopLeft,
+                        configs.positionTopRight,
+                        configs.positionBottomLeft,
+                        configs.positionMiddleLeft,
+                        configs.positionMiddleRight,
+                        configs.positionTopMiddle,
+                        configs.positionMiddleMiddle,
+                        configs.positionBottomMiddle
+                    )
+
+                    for (let i = 0; i < position.length; i++) {
+                        if (board[configs.tableString + String(position[i])] === null) {
+                            ia = false
+                            return String(position[i]);
+                        }
                     }
+                    ia = false
                 }
             }
         }
     }
 
     function defend(board) {
-        let player = configs.xString;
-        
+        let opponent = configs.xString;
+
         if (validations(board)) {
             if (ia === true) {
-                if (board[configs.topLeft] === player && board[configs.topMiddle] === player && board[configs.topLeft] === null) {
-                    return '3';
-                } else if (board[configs.topMiddle] === player && board[configs.topRight] === player && board[configs.topLeft] === null) {
-                    return '1';
-                } else if (board[configs.topLeft] === player && board[configs.topRight] === player && board[configs.topMiddle] === null) {
-                    return '2';
-                } else if (board[configs.middleLeft] === player && board[configs.middleMiddle] === player && board[configs.middleRight] === null) {
-                    return '6';
-                } else if (board[configs.middleMiddle] === player && board[configs.middleRight] === player && board[configs.middleLeft] === null) {
-                    return '4';
-                } else if (board[configs.middleLeft] === player && board[configs.middleRight] === player && board[configs.middleMiddle] === null) {
-                    return '5';
-                } else if (board[configs.bottomLeft] === player && board[configs.bottomMiddle] === player && board[configs.bottomRight] === null) {
-                    return '9';
-                } else if (board[configs.bottomMiddle] === player && board[configs.bottomRight] === player && board[configs.bottomLeft] === null) {
-                    return '7';
-                } else if (board[configs.bottomLeft] === player && board[configs.bottomRight] === player && board[configs.bottomMiddle] === null) {
-                    return '8';
-                } else if (board[configs.topLeft] === player && board[configs.middleLeft] === player && board[configs.bottomLeft] === null) {
-                    return '7';
-                } else if (board[configs.middleLeft] === player && board[configs.bottomLeft] === player && board[configs.topLeft] === null) {
-                    return '1';
-                } else if (board[configs.topLeft] === player && board[configs.bottomLeft] === player && board[configs.middleLeft] === null) {
-                    return '4';
-                } else if (board[configs.topMiddle] === player && board[configs.middleMiddle] === player && board[configs.bottomMiddle] === null) {
-                    return '8';
-                } else if (board[configs.middleMiddle] === player && board[configs.bottomMiddle] === player && board[configs.topMiddle] === null) {
-                    return '2';
-                } else if (board[configs.topMiddle] === player && board[configs.bottomMiddle] === player && board[configs.middleMiddle] === null) {
-                    return '5';
-                } else if (board[configs.topRight] === player && board[configs.middleRight] === player && board[configs.bottomRight] === null) {
-                    return '9';
-                } else if (board[configs.middleRight] === player && board[configs.bottomRight] === player && board[configs.topRight] === null) {
-                    return '3';
-                } else if (board[configs.topRight] === player && board[configs.bottomRight] === player && board[configs.middleRight] === null) {
-                    return '6';
-                } else if (board[configs.topLeft] === player && board[configs.middleMiddle] === player && board[configs.bottomRight] === null) {
-                    return '9';
-                } else if (board[configs.middleMiddle] === player && board[configs.bottomRight] === player && board[configs.topLeft] === null) {
-                    return '1';
-                } else if (board[configs.topLeft] === player && board[configs.bottomRight] === player && board[configs.middleMiddle] === null) {
-                    return '5';
-                } else if (board[configs.bottomLeft] === player && board[configs.middleMiddle] === player && board[configs.topRight] === null) {
-                    return '3';
-                } else if (board[configs.middleMiddle] === player && board[configs.topRight] === player && board[configs.bottomLeft] === null) {
-                    return '7';
-                } else if (board[configs.bottomLeft] === player && board[configs.topRight] === player && board[configs.middleMiddle] === null) {
-                    return '5';
+                if (board[configs.topLeft] === opponent && board[configs.topMiddle] === opponent && board[configs.topRight] === null) {
+                    return String(configs.positionTopRight);
+                } else if (board[configs.topMiddle] === opponent && board[configs.topRight] === opponent && board[configs.topLeft] === null) {
+                    return String(configs.positionTopLeft);
+                } else if (board[configs.topLeft] === opponent && board[configs.topRight] === opponent && board[configs.topMiddle] === null) {
+                    return String(configs.positionTopMiddle);
+                } else if (board[configs.middleLeft] === opponent && board[configs.middleMiddle] === opponent && board[configs.middleRight] === null) {
+                    return String(configs.positionMiddleRight);
+                } else if (board[configs.middleMiddle] === opponent && board[configs.middleRight] === opponent && board[configs.middleLeft] === null) {
+                    return String(configs.positionMiddleLeft);
+                } else if (board[configs.middleLeft] === opponent && board[configs.middleRight] === opponent && board[configs.middleMiddle] === null) {
+                    return String(configs.positionMiddleMiddle);
+                } else if (board[configs.bottomLeft] === opponent && board[configs.bottomMiddle] === opponent && board[configs.bottomRight] === null) {
+                    return String(configs.positionBottomRight);
+                } else if (board[configs.bottomMiddle] === opponent && board[configs.bottomRight] === opponent && board[configs.bottomLeft] === null) {
+                    return String(configs.positionBottomLeft);
+                } else if (board[configs.bottomLeft] === opponent && board[configs.bottomRight] === opponent && board[configs.bottomMiddle] === null) {
+                    return String(configs.positionBottomMiddle);
+                } else if (board[configs.topLeft] === opponent && board[configs.middleLeft] === opponent && board[configs.bottomLeft] === null) {
+                    return String(configs.positionBottomLeft);
+                } else if (board[configs.middleLeft] === opponent && board[configs.bottomLeft] === opponent && board[configs.topLeft] === null) {
+                    return String(configs.positionTopLeft);
+                } else if (board[configs.topLeft] === opponent && board[configs.bottomLeft] === opponent && board[configs.middleLeft] === null) {
+                    return String(configs.positionMiddleLeft);
+                } else if (board[configs.topMiddle] === opponent && board[configs.middleMiddle] === opponent && board[configs.bottomMiddle] === null) {
+                    return String(configs.positionBottomMiddle);
+                } else if (board[configs.middleMiddle] === opponent && board[configs.bottomMiddle] === opponent && board[configs.topMiddle] === null) {
+                    return String(configs.positionTopMiddle);
+                } else if (board[configs.topMiddle] === opponent && board[configs.bottomMiddle] === opponent && board[configs.middleMiddle] === null) {
+                    return String(configs.positionMiddleMiddle);
+                } else if (board[configs.topRight] === opponent && board[configs.middleRight] === opponent && board[configs.bottomRight] === null) {
+                    return String(configs.positionBottomRight);
+                } else if (board[configs.middleRight] === opponent && board[configs.bottomRight] === opponent && board[configs.topRight] === null) {
+                    return String(configs.positionTopRight);
+                } else if (board[configs.topRight] === opponent && board[configs.bottomRight] === opponent && board[configs.middleRight] === null) {
+                    return String(configs.positionMiddleRight);
+                } else if (board[configs.topLeft] === opponent && board[configs.middleMiddle] === opponent && board[configs.bottomRight] === null) {
+                    return String(configs.positionBottomRight);
+                } else if (board[configs.middleMiddle] === opponent && board[configs.bottomRight] === opponent && board[configs.topLeft] === null) {
+                    return String(configs.positionTopLeft);
+                } else if (board[configs.topLeft] === opponent && board[configs.bottomRight] === opponent && board[configs.middleMiddle] === null) {
+                    return String(configs.positionMiddleMiddle);
+                } else if (board[configs.bottomLeft] === opponent && board[configs.middleMiddle] === opponent && board[configs.topRight] === null) {
+                    return String(configs.positionTopRight);
+                } else if (board[configs.middleMiddle] === opponent && board[configs.topRight] === opponent && board[configs.bottomLeft] === null) {
+                    return String(configs.positionBottomLeft);
+                } else if (board[configs.bottomLeft] === opponent && board[configs.topRight] === opponent && board[configs.middleMiddle] === null) {
+                    return String(configs.positionMiddleMiddle);
                 }
+                return null
             }
         }
     }
 
     function attack(board) {
-        let opponent = configs.xString;
+        let player = configs.oString;
 
         if (validations(board)) {
             if (ia === true) {
                 if (
-                    board.J1 === opponent && board.J5 === 5
-                    || board.J3 === opponent && board.J5 === 5
-                    || board.J7 === opponent && board.J5 === 5
-                    || board.J9 === opponent && board.J5 === 5
+                    board[configs.topLeft] === player && board[configs.middleMiddle] === null
+                    || board[configs.topRight] === player && board[configs.middleMiddle] === null
+                    || board[configs.bottomLeft] === player && board[configs.middleMiddle] === null
+                    || board[configs.bottomRight] === player && board[configs.middleMiddle] === null
                 ) {
-                    defaultContentForAttackAndDefend('J5');
-                } else if (board.J1 === opponent && board.J2 === opponent && board.J3 === 3) {
-                    defaultContentForAttackAndDefend('J3');
-                } else if (board.J2 === opponent && board.J3 === opponent && board.J1 === 1) {
-                    defaultContentForAttackAndDefend('J1');
-                } else if (board.J1 === opponent && board.J3 === opponent && board.J2 === 2) {
-                    defaultContentForAttackAndDefend('J2');
-                } else if (board.J4 === opponent && board.J5 === opponent && board.J6 === 6) {
-                    defaultContentForAttackAndDefend('J6');
-                } else if (board.J5 === opponent && board.J6 === opponent && board.J4 === 4) {
-                    defaultContentForAttackAndDefend('J4');
-                } else if (board.J4 === opponent && board.J6 === opponent && board.J5 === 5) {
-                    defaultContentForAttackAndDefend('J5');
-                } else if (board.J7 === opponent && board.J8 === opponent && board.J9 === 9) {
-                    defaultContentForAttackAndDefend('J9');
-                } else if (board.J8 === opponent && board.J9 === opponent && board.J7 === 7) {
-                    defaultContentForAttackAndDefend('J7');
-                } else if (board.J7 === opponent && board.J9 === opponent && board.J8 === 8) {
-                    defaultContentForAttackAndDefend('J8');
-                } else if (board.J1 === opponent && board.J4 === opponent && board.J7 === 7) {
-                    defaultContentForAttackAndDefend('J7');
-                } else if (board.J4 === opponent && board.J7 === opponent && board.J1 === 1) {
-                    defaultContentForAttackAndDefend('J1');
-                } else if (board.J1 === opponent && board.J7 === opponent && board.J4 === 4) {
-                    defaultContentForAttackAndDefend('J4');
-                } else if (board.J2 === opponent && board.J5 === opponent && board.J8 === 8) {
-                    defaultContentForAttackAndDefend('J8');
-                } else if (board.J5 === opponent && board.J8 === opponent && board.J2 === 2) {
-                    defaultContentForAttackAndDefend('J2');
-                } else if (board.J2 === opponent && board.J8 === opponent && board.J5 === 5) {
-                    defaultContentForAttackAndDefend('J5');
-                } else if (board.J3 === opponent && board.J6 === opponent && board.J9 === 9) {
-                    defaultContentForAttackAndDefend('J9');
-                } else if (board.J6 === opponent && board.J9 === opponent && board.J3 === 3) {
-                    defaultContentForAttackAndDefend('J3');
-                } else if (board.J3 === opponent && board.J9 === opponent && board.J6 === 6) {
-                    defaultContentForAttackAndDefend('J6');
-                } else if (board.J1 === opponent && board.J5 === opponent && board.J9 === 9) {
-                    defaultContentForAttackAndDefend('J9');
-                } else if (board.J5 === opponent && board.J9 === opponent && board.J1 === 1) {
-                    defaultContentForAttackAndDefend('J1');
-                } else if (board.J1 === opponent && board.J9 === opponent && board.J5 === 5) {
-                    defaultContentForAttackAndDefend('J5');
-                } else if (board.J7 === opponent && board.J5 === opponent && board.J3 === 3) {
-                    defaultContentForAttackAndDefend('J3');
-                } else if (board.J5 === opponent && board.J3 === opponent && board.J7 === 7) {
-                    defaultContentForAttackAndDefend('J7');
-                } else if (board.J7 === opponent && board.J3 === opponent && board.J5 === 5) {
-                    defaultContentForAttackAndDefend('J5');
+                    return String(configs.positionMiddleMiddle);
+                } else if (board[configs.topLeft] === player && board[configs.topMiddle] === player && board[configs.topRight] === null) {
+                    return String(configs.positionTopRight);
+                } else if (board[configs.topMiddle] === player && board[configs.topRight] === player && board[configs.topLeft] === null) {
+                    return String(configs.positionTopLeft);
+                } else if (board[configs.topLeft] === player && board[configs.topRight] === player && board[configs.topMiddle] === null) {
+                    return String(configs.positionTopMiddle);
+                } else if (board[configs.middleLeft] === player && board[configs.middleMiddle] === player && board[configs.middleRight] === null) {
+                    return String(configs.positionMiddleRight);
+                } else if (board[configs.middleMiddle] === player && board[configs.middleRight] === player && board[configs.middleLeft] === null) {
+                    return String(configs.positionMiddleLeft);
+                } else if (board[configs.middleLeft] === player && board[configs.middleRight] === player && board[configs.middleMiddle] === null) {
+                    return String(configs.positionMiddleMiddle);
+                } else if (board[configs.bottomLeft] === player && board[configs.bottomMiddle] === player && board[configs.bottomRight] === null) {
+                    return String(configs.positionBottomRight);
+                } else if (board[configs.bottomMiddle] === player && board[configs.bottomRight] === player && board[configs.bottomLeft] === null) {
+                    return String(configs.positionBottomLeft);
+                } else if (board[configs.bottomLeft] === player && board[configs.bottomRight] === player && board[configs.bottomMiddle] === null) {
+                    return String(configs.positionBottomMiddle);
+                } else if (board[configs.topLeft] === player && board[configs.middleLeft] === player && board[configs.bottomLeft] === null) {
+                    return String(configs.positionBottomLeft);
+                } else if (board[configs.middleLeft] === player && board[configs.bottomLeft] === player && board[configs.topLeft] === null) {
+                    return String(configs.positionTopLeft);
+                } else if (board[configs.topLeft] === player && board[configs.bottomLeft] === player && board[configs.middleLeft] === null) {
+                    return String(configs.positionMiddleLeft);
+                } else if (board[configs.topMiddle] === player && board[configs.middleMiddle] === player && board[configs.bottomMiddle] === null) {
+                    return String(configs.positionBottomMiddle);
+                } else if (board[configs.middleMiddle] === player && board[configs.bottomMiddle] === player && board[configs.topMiddle] === null) {
+                    return String(configs.positionTopMiddle);
+                } else if (board[configs.topMiddle] === player && board[configs.bottomMiddle] === player && board[configs.middleMiddle] === null) {
+                    return String(configs.positionMiddleMiddle);
+                } else if (board[configs.topRight] === player && board[configs.middleRight] === player && board[configs.bottomRight] === null) {
+                    return String(configs.positionBottomRight);
+                } else if (board[configs.middleRight] === player && board[configs.bottomRight] === player && board[configs.topRight] === null) {
+                    return String(configs.positionTopRight);
+                } else if (board[configs.topRight] === player && board[configs.bottomRight] === player && board[configs.middleRight] === null) {
+                    return String(configs.positionMiddleRight);
+                } else if (board[configs.topLeft] === player && board[configs.middleMiddle] === player && board[configs.bottomRight] === null) {
+                    return String(configs.positionBottomRight);
+                } else if (board[configs.middleMiddle] === player && board[configs.bottomRight] === player && board[configs.topLeft] === null) {
+                    return String(configs.positionTopLeft);
+                } else if (board[configs.topLeft] === player && board[configs.bottomRight] === player && board[configs.middleMiddle] === null) {
+                    return String(configs.positionMiddleMiddle);
+                } else if (board[configs.bottomLeft] === player && board[configs.middleMiddle] === player && board[configs.topRight] === null) {
+                    return String(configs.positionTopRight);
+                } else if (board[configs.middleMiddle] === player && board[configs.topRight] === player && board[configs.bottomLeft] === null) {
+                    return String(configs.positionBottomLeft);
+                } else if (board[configs.bottomLeft] === player && board[configs.topRight] === player && board[configs.middleMiddle] === null) {
+                    return String(configs.positionMiddleMiddle);
                 }
+                return null
             }
         }
-    }
-    
-    function defaultContentForAttackAndDefend(position) {
-
-        if (ia === true) {
-            ia = false;
-            return
-        }
-            /*
-            validar se é a ia que joga ainda
-            faz a jogada
-            faz update do gotOld
-             */
     }
 
     return {

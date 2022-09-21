@@ -2,23 +2,22 @@ ticTacToe.constant("configs", {
 
     //url's
     coreDefaultPath: "http://localhost/Jogo-da-velha-V3/core/",
-    baseURL: "http://localhost/Jogo-da-velha-V3/",
     ajaxUrl: "http://localhost/Jogo-da-velha-V3/core/ajax.php",
 
     //X_O
     xString:    "x",
     oString:    "o",
-    xCode:      "1",
-    oCode:      "2",
-    randCode:   "3",
+    xCode:      String(1),
+    oCode:      String(2),
+    randCode:   String(3),
 
     //difficulty
     easyString:     "Fácil",
     mediumString:   "Médio",
     hardString:     "Difícil",
-    easyCode:       "1",
-    mediumCode:     "2",
-    hardCode:       "3",
+    easyCode:       String(1),
+    mediumCode:     String(2),
+    hardCode:       String(3),
 
     //messages
     gotOld: "Deu velha, ninguém ganhou!",
@@ -38,13 +37,13 @@ ticTacToe.constant("configs", {
     bottomRight:    "J9",
 
     //posições em número
-    positionTopLeft:        1,
-    positionTopMiddle:      2,
-    positionTopRight:       3,
-    positionMiddleLeft:     4,
-    positionMiddleMiddle:   5,
-    positionMiddleRight:    6,
-    positionBottomLeft:     7,
-    positionBottomMiddle:   8,
-    positionBottomRight:    9,
+    positionTopLeft:        String(1),
+    positionTopMiddle:      String(2),
+    positionTopRight:       String(3),
+    positionMiddleLeft:     String(4),
+    positionMiddleMiddle:   String(5),
+    positionMiddleRight:    String(6),
+    positionBottomLeft:     String(7),
+    positionBottomMiddle:   String(8),
+    positionBottomRight:    String(9),
 });
