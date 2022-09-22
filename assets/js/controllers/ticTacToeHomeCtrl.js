@@ -19,7 +19,7 @@ ticTacToe.controller("ticTacToeHomeCtrl", function ($scope, $http, $location, co
                 $location.path('/multi-player');
             }
         }, function () {
-            alert("Erro ao iniciar jogo");
+            alert("Erro ao iniciar jogo, não foi possível se comunicar com o banco de dados.");
         })
     }
 });
