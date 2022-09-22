@@ -4,6 +4,10 @@ ticTacToe.constant("configs", {
     coreDefaultPath: "http://localhost/Jogo-da-velha-V3/core/",
     ajaxUrl: "http://localhost/Jogo-da-velha-V3/core/ajax.php",
 
+    //players
+    singlePlayer: 1,
+    multiPlayer: 2,
+
     //X_O
     xString:    "x",
     oString:    "o",

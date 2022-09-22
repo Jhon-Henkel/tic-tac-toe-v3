@@ -28,16 +28,6 @@ switch ($_GET['method']) {
         $board->resetGame();
         break;
 
-    case 'gotOld':
-        $board = new Board();
-        echo json_encode($board->gotOld());
-        break;
-
-    case 'somebodyWin':
-        $board = new Board();
-        echo json_encode($board->somebodyWin());
-        break;
-
     case 'getPlayerData':
         $player = new Player();
         echo json_encode($player->getPlayerData()[0]);

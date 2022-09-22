@@ -24,8 +24,5 @@ CREATE TABLE IF NOT EXISTS board (
     J7 varchar(30) DEFAULT '7',
     J8 varchar(30) DEFAULT '8',
     J9 varchar(30) DEFAULT '9',
-    got_old varchar(6) DEFAULT NULL,
-    board_done varchar(6) DEFAULT NULL,
-    form varchar(5) DEFAULT NULL,
     PRIMARY KEY (`id_board`))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

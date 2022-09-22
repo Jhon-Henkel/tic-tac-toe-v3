@@ -25,7 +25,7 @@ ticTacToe.factory("boardServices", function ($http, configs, $location) {
 
     function _somebodyWin(board) {
 
-        let player = 'x'
+        let player = configs.xString
         for (let count = 1; count <=2; count++) {
             if (
                 (board[configs.topLeft] === player && board[configs.topMiddle] === player && board[configs.topRight] === player)

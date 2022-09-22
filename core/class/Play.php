@@ -18,8 +18,8 @@ class Play
             $position = $data['position'];
             $value = $data['value'];
 
-            $db->update('UPDATE board SET ' . $position . ' = "' . $value . '", got_old = got_old + 1 WHERE id_board = 1');
-            $db->update('UPDATE board SET ' . $position . ' = "' . $value . '", got_old = got_old + 1 WHERE id_board = 2');
+            $db->update('UPDATE board SET ' . $position . ' = "' . $value . '" WHERE id_board = 1');
+            $db->update('UPDATE board SET ' . $position . ' = "' . $value . '" WHERE id_board = 2');
 
             return true;
 

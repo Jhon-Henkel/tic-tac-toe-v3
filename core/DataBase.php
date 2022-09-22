@@ -122,34 +122,6 @@ class DataBase
     /**
      * @throws Exception
      */
-    public function delete($sql, $params = null)
-    {
-        $sql = trim($sql);
-
-        if (!preg_match('/^DELETE/i', $sql)){
-            throw new Exception('Base de dados não é do tipo DELETE');
-        }
-
-        $this->connectDb();
-
-        try {
-            $pdo = $this->connectDb->prepare($sql);
-
-            if (!empty($params)) {
-                $pdo->execute($params);
-            } else {
-                $pdo->execute();
-            }
-        } catch (\PDOException $exception) {
-            return false;
-        }
-
-        $this->disconnectDb();
-    }
-
-    /**
-     * @throws Exception
-     */
     public function truncate($sql)
     {
         $sql = trim($sql);

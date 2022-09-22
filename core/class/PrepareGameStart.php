@@ -2,6 +2,7 @@
 namespace core\class;
 
 use core\DataBase;
+use core\class\Board;
 use Exception;
 
 class PrepareGameStart
@@ -16,7 +17,7 @@ class PrepareGameStart
             $db->truncate('TRUNCATE player');
             $db->truncate('TRUNCATE board');
         } catch (Exception) {
-            throw new Exception('Não foi possivel fazer o truncate', 500);
+            throw new Exception('Não foi possível fazer o truncate!', 500);
         }
     }
 
@@ -26,6 +27,7 @@ class PrepareGameStart
     public function prepareGameTables($initialGamePost)
     {
         $db = new DataBase();
+        $this->truncateTables();
 
         $db->insert(
         'INSERT INTO player (
@@ -41,7 +43,7 @@ class PrepareGameStart
             )'
         );
 
-        $db->insert('INSERT INTO board (id_board, J1, J2, J3, J4, J5, J6, J7, J8, J9, got_old, board_done) VALUES (1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, true)');
+        $db->insert('INSERT INTO board (id_board, J1, J2, J3, J4, J5, J6, J7, J8, J9) VALUES (1, 1, 2, 3, 4, 5, 6, 7, 8, 9)');
         $db->insert('INSERT INTO board (id_board, J1, J2, J3, J4, J5, J6, J7, J8, J9) VALUES (2, null, null, null, null, null, null, null, null, null)');
 
     }
@@ -60,7 +62,7 @@ class PrepareGameStart
         }
 
         if ($initialGamePost['init'] > 3 || $initialGamePost['difficulty'] > 3 || $initialGamePost['player'] > 2) {
-            throw new Exception('Parâmetros com valores não permitidos', 403);
+            throw new Exception('Parâmetros com valores inválidos', 404);
         }
 
         return true;
