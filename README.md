@@ -15,4 +15,4 @@ via rede.
 - Para criar a base de dados e as tabelas necessárias tem um arquivo com as queries em alters/alters.sql onde você pode copiar as queries e executar em seu bando de dados.
 
 
-- Alterar o valor das constantes relacionadas ao banco de dados contidas no arquivo config.php na raiz desse projeto. 
+- Alterar o valor das constantes relacionadas ao banco de dados contidas no arquivo config.php na raiz desse projeto.
