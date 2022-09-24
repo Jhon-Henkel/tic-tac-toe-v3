@@ -17,4 +17,4 @@ via rede.
 - Alterar o caminho do seu diretório em assets/js/config/configs.js
 
 # Quer ver funcionando?
-Basta clicar aqui
+Basta clicar <a target="_blank" href="http://tictactoe.jhonhenkel.kinghost.net/">aqui</a>
