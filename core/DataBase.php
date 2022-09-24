@@ -7,17 +7,21 @@ use PDO;
 
 class DataBase
 {
-    private $connectDb;
+    private $conn;
 
     private function connectDb()
     {
         try {
-            $this->connectDb = new PDO(
+            $this->conn = new PDO(
                 'mysql: host=' . MYSQL_SERVER . '; dbname=' . MYSQL_DATABASE,
                 MYSQL_USER,
                 MYSQL_PASS
             );
-            $this->connectDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            return $this->conn;
+
         } catch (Exception $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
@@ -25,7 +29,7 @@ class DataBase
 
     private function disconnectDb()
     {
-        $this->connectDb = null;
+        $this->conn = null;
     }
 
     /**
@@ -43,7 +47,7 @@ class DataBase
         $results = null;
 
         try {
-            $pdo = $this->connectDb->prepare($sql);
+            $pdo = $this->conn->prepare($sql);
 
             if (!empty($params)) {
                 $pdo->execute($params);
@@ -75,7 +79,7 @@ class DataBase
         $this->connectDb();
 
         try {
-            $pdo = $this->connectDb->prepare($sql);
+            $pdo = $this->conn->prepare($sql);
 
             if (!empty($params)) {
                 $pdo->execute($params);
@@ -103,7 +107,7 @@ class DataBase
         $this->connectDb();
 
         try {
-            $pdo = $this->connectDb->prepare($sql);
+            $pdo = $this->conn->prepare($sql);
 
             if (!empty($params)) {
                 $pdo->execute($params);
@@ -127,7 +131,7 @@ class DataBase
         $this->connectDb();
 
         try {
-            $pdo = $this->connectDb->prepare($sql);
+            $pdo = $this->conn->prepare($sql);
             $pdo->execute();
         } catch (\PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
