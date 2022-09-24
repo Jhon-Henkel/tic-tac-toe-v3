@@ -13,7 +13,7 @@ class Board
     public function getBoardOneData(): array
     {
         $db = new DataBase();
-        return $db->select('SELECT * FROM board WHERE id_board = 1')[0];
+        return $db->select('SELECT * FROM board WHERE id_board = 1');
     }
 
     /**
@@ -22,7 +22,7 @@ class Board
     public function getBoardTwoData(): array
     {
         $db = new DataBase();
-        return $db->select('SELECT * FROM board WHERE id_board = 2')[0];
+        return $db->select('SELECT * FROM board WHERE id_board = 2');
     }
 
     /**

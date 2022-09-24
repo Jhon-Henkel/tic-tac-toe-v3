@@ -3,7 +3,7 @@
 namespace core;
 
 use Exception;
-use PDO;
+use mysqli;
 
 class DataBase
 {
@@ -12,13 +12,14 @@ class DataBase
     private function connectDb()
     {
         try {
-            $this->conn = new PDO(
-                'mysql: host=' . MYSQL_SERVER . '; dbname=' . MYSQL_DATABASE,
+            $this->conn = new mysqli(
+                MYSQL_SERVER,
                 MYSQL_USER,
-                MYSQL_PASS
+                MYSQL_PASS,
+                MYSQL_DATABASE,
+                MYSQL_PORT,
+                MYSQL_SOCKET,
             );
-
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             return $this->conn;
 
@@ -29,13 +30,13 @@ class DataBase
 
     private function disconnectDb(): void
     {
-        $this->conn = null;
+        mysqli_close($this->conn);
     }
 
     /**
      * @throws Exception
      */
-    public function select(string $sql, ?array $params = null):  array
+    public function select(string $sql):  array
     {
         $sql = trim($sql);
 
@@ -47,17 +48,10 @@ class DataBase
         $results = null;
 
         try {
-            $pdo = $this->conn->prepare($sql);
+            $mysqli = $this->conn->query($sql);
+            $results = $mysqli->fetch_assoc();
 
-            if (!empty($params)) {
-                $pdo->execute($params);
-            }else {
-                $pdo->execute();
-            }
-
-            $results = $pdo->fetchall(PDO::FETCH_ASSOC);
-
-        }catch (\PDOException $e) {
+        }catch (\mysqli_sql_exception $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
 
@@ -68,25 +62,19 @@ class DataBase
     /**
      * @throws Exception
      */
-    public function insert(string $sql, ?array $params = null): void
+    public function insert(string $sql): void
     {
         $sql = trim($sql);
 
         if (!preg_match('/^INSERT/i', $sql)){
-            throw new Exception('Base de dados não é do tipo INSERT');
+            throw new \mysqli_sql_exception('Base de dados não é do tipo INSERT');
         }
 
         $this->connectDb();
 
         try {
-            $pdo = $this->conn->prepare($sql);
-
-            if (!empty($params)) {
-                $pdo->execute($params);
-            } else {
-                $pdo->execute();
-            }
-        } catch (\PDOException $e) {
+            $this->conn->query($sql);
+        } catch (\mysqli_sql_exception $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
 
@@ -96,7 +84,7 @@ class DataBase
     /**
      * @throws Exception
      */
-    public function update(string $sql, ?array $params = null): void
+    public function update(string $sql): void
     {
         $sql = trim($sql);
 
@@ -107,14 +95,8 @@ class DataBase
         $this->connectDb();
 
         try {
-            $pdo = $this->conn->prepare($sql);
-
-            if (!empty($params)) {
-                $pdo->execute($params);
-            } else {
-                $pdo->execute();
-            }
-        } catch (\PDOException $e) {
+            $this->conn->prepare($sql);
+        } catch (\mysqli_sql_exception $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
 
@@ -131,9 +113,8 @@ class DataBase
         $this->connectDb();
 
         try {
-            $pdo = $this->conn->prepare($sql);
-            $pdo->execute();
-        } catch (\PDOException $e) {
+            $this->conn->query($sql);
+        } catch (\mysqli_sql_exception $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
 

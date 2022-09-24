@@ -30,6 +30,6 @@ switch ($_GET['method']) {
 
     case 'getPlayerData':
         $player = new Player();
-        echo json_encode($player->getPlayerData()[0]);
+        echo json_encode($player->getPlayerData());
         break;
 }
