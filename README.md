@@ -1,11 +1,15 @@
 # Jogo da velha Versão 3
-Nesta versão, temos uma repaginada no visual, organização de código, armazenamento de informações via banco de dados, na versão anterior o armazenamento era por variável de sessão, 
-e totalmente sem framework, totalmente em PHP e o código era mais bruto.
+Nesta versão, temos uma repaginada no visual, organização de código, armazenamento de informações via banco de dados.
 
 O intuito desse projeto foi aprimorar os conhecimentos em Javascript, AngularJs e Bootstrap principalmente, que são as ferramentas que utilizo no meu serviço e tinha dificuldade. 
 Desenvolvi esse projeto utilizando HTML, CSS e JavaScript no frontend, e no backend utilizei PHP e My SQL. Como o foco desse projeto era conhecer um pouco melhor o Bootstrap e 
-aprimorar as minhas skills em JS, utilizei como framework's o Bootstrap e o AngularJS. O sistema de rotas do frontend são controlados pelo AngularJS, já no backend criei um arquivo 
-Ajax com 'switch case' onde chama as funções para gravar e buscar no banco as informações da jogada.
+aprimorar as minhas skills em JS, utilizei como framework's o Bootstrap e o AngularJS.
+
+Desenvolvi nesse game com opção de um ou dois jogadores, três opções de dificuldade de jogo no modo single player, sendo:
+- Fácil: Essa dificuldade é totalmente randômica, sem estratégias de defesa ou ataque elaborado.
+- Média: Aqui, as jogadas já são mais estratégicas, sempre antes de jogar uma sequência estratégica, o sistema de defesa irá tentar te impedir de ganhar.
+- Difícil: Por aqui as jogadas ja são bem mais estratégicas, tendo o mesmo sistema de defesa da dificuldade média, porem antes de se defender, ele vai validar se ele consegue ganhar. 
+Caso não consiga ganhar, vai ver se consegue se defender, se não tiver jogadas de defesa, cairá em uma sequência lógica.
 
 Em uma versão futura, pretendo colocar testes unitários, rotas do backend pelo Slim, melhorar a inteligência artificial, colocar os alerts em JS para modais e opção multi-player 
 via rede.
