@@ -2,7 +2,6 @@
 namespace core\class;
 
 use core\DataBase;
-use core\class\Board;
 use Exception;
 
 class PrepareGameStart
@@ -14,8 +13,8 @@ class PrepareGameStart
     {
         try {
             $db = new DataBase();
-            $db->truncate('TRUNCATE player');
-            $db->truncate('TRUNCATE board');
+            $db->truncate('TRUNCATE TABLE player');
+            $db->truncate('TRUNCATE TABLE board');
         } catch (Exception) {
             throw new Exception('Não foi possível fazer o truncate!', 500);
         }

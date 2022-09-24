@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "kint-php/kint",
-            "version": "4.1.4",
+            "version": "4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kint-php/kint.git",
-                "reference": "84a61c9b19abd4bed2b961af8254d38deae33d44"
+                "reference": "31e9bfa901dd8ad793a1de88ca5144819783e4b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kint-php/kint/zipball/84a61c9b19abd4bed2b961af8254d38deae33d44",
-                "reference": "84a61c9b19abd4bed2b961af8254d38deae33d44",
+                "url": "https://api.github.com/repos/kint-php/kint/zipball/31e9bfa901dd8ad793a1de88ca5144819783e4b6",
+                "reference": "31e9bfa901dd8ad793a1de88ca5144819783e4b6",
                 "shasum": ""
             },
             "require": {
@@ -67,9 +67,9 @@
             ],
             "support": {
                 "issues": "https://github.com/kint-php/kint/issues",
-                "source": "https://github.com/kint-php/kint/tree/4.1.4"
+                "source": "https://github.com/kint-php/kint/tree/4.2.1"
             },
-            "time": "2022-07-30T16:29:40+00:00"
+            "time": "2022-09-22T06:35:32+00:00"
         }
     ],
     "packages-dev": [],
@@ -82,5 +82,5 @@
         "ext-pdo": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }

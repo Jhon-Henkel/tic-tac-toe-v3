@@ -11,18 +11,16 @@ class DataBase
 
     private function connectDb()
     {
-        $this->connectDb = new PDO(
-            'mysql:'
-            . 'host=' . MYSQL_SERVER . ';'
-            . 'dbname=' . MYSQL_DATABASE . ';'
-            . 'charset=' . MYSQL_CHARSET,
-            MYSQL_USER,
-            MYSQL_PASS,
-            array(PDO::ATTR_PERSISTENT => true)
-        );
-
-        //debug
-        $this->connectDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+        try {
+            $this->connectDb = new PDO(
+                'mysql: host=' . MYSQL_SERVER . '; dbname=' . MYSQL_DATABASE,
+                MYSQL_USER,
+                MYSQL_PASS
+            );
+            $this->connectDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (Exception $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        }
     }
 
     private function disconnectDb()
@@ -55,8 +53,8 @@ class DataBase
 
             $results = $pdo->fetchall(PDO::FETCH_ASSOC);
 
-        }catch (\PDOException $exception) {
-            return false;
+        }catch (\PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
         }
 
         $this->disconnectDb();
@@ -84,8 +82,8 @@ class DataBase
             } else {
                 $pdo->execute();
             }
-        } catch (\PDOException $exception) {
-            return false;
+        } catch (\PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
         }
 
         $this->disconnectDb();
@@ -112,8 +110,8 @@ class DataBase
             } else {
                 $pdo->execute();
             }
-        } catch (\PDOException $exception) {
-            return false;
+        } catch (\PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
         }
 
         $this->disconnectDb();
@@ -131,8 +129,8 @@ class DataBase
         try {
             $pdo = $this->connectDb->prepare($sql);
             $pdo->execute();
-        } catch (\PDOException $exception) {
-            return false;
+        } catch (\PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
         }
 
         $this->disconnectDb();
