@@ -27,7 +27,7 @@ class DataBase
         }
     }
 
-    private function disconnectDb()
+    private function disconnectDb(): void
     {
         $this->conn = null;
     }
@@ -35,7 +35,7 @@ class DataBase
     /**
      * @throws Exception
      */
-    public function select($sql, $params = null)
+    public function select(string $sql, ?array $params = null):  array
     {
         $sql = trim($sql);
 
@@ -68,7 +68,7 @@ class DataBase
     /**
      * @throws Exception
      */
-    public function insert($sql, $params = null)
+    public function insert(string $sql, ?array $params = null): void
     {
         $sql = trim($sql);
 
@@ -96,7 +96,7 @@ class DataBase
     /**
      * @throws Exception
      */
-    public function update($sql, $params = null)
+    public function update(string $sql, ?array $params = null): void
     {
         $sql = trim($sql);
 
@@ -124,7 +124,7 @@ class DataBase
     /**
      * @throws Exception
      */
-    public function truncate($sql)
+    public function truncate(string $sql): void
     {
         $sql = trim($sql);
 

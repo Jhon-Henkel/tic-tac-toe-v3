@@ -9,7 +9,7 @@ class PrepareGameStart
     /**
      * @throws Exception
      */
-    public function truncateTables()
+    public function truncateTables(): void
     {
         try {
             $db = new DataBase();
@@ -23,7 +23,7 @@ class PrepareGameStart
     /**
      * @throws Exception
      */
-    public function prepareGameTables($initialGamePost)
+    public function prepareGameTables(array $initialGamePost): void
     {
         $db = new DataBase();
         $this->truncateTables();
