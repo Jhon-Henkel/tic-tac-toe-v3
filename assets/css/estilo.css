@@ -1,5 +1,5 @@
 html {
-    font: 15pt Arial;
+    font: 2vh Arial;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -16,27 +16,27 @@ html {
     font-weight: bold;
     color: white;
     background-color: rgba(39,55,71,0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 5px;
+    backdrop-filter: blur(1.0204081632653061vh);
+    -webkit-backdrop-filter: blur(1.0204081632653061vh);
+    padding: 0.5102040816326531vh;
     display: block;
     position: relative;
-    top: -10px;
-    left: -10px;
-    width: 650px;
+    top: -1.0204081632653061vh;
+    left: -1.0204081632653061vh;
+    width: 66vh;
     border-radius: 10px 10px 0 0;
     box-shadow: 0 0 1em black;
 }
 
 .content {
     background-color: rgba(255,255,255,0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    margin: 90px auto 0 auto;
-    padding: 10px;
-    width: 650px;
-    min-height:300px;
-    border-radius: 10px 10px 0 0;
+    backdrop-filter: blur(1.0204081632653061vh);
+    -webkit-backdrop-filter: blur(1.0204081632653061vh);
+    margin: 9.183673469387756vh auto 0 auto;
+    padding: 1.0204081632653061vh;
+    width: 66vh;
+    height:55vh;
+    border-radius: 1.0204081632653061vh 1.0204081632653061vh 0 0;
     box-shadow: 0 0 1em black;
 }
 
@@ -61,11 +61,12 @@ h1 {
     color: midnightblue;
 }
 
-.background_grade {
+.background-grid {
     background-image: url("../images/grade.png");
-    height: 216px;
-    width: 234px;
-    margin-left: 200px;
+    background-size: cover;
+    height: 22.040816326530614vh;
+    width: 23.877551020408163vh;
+    margin-left: 20.408163265306122vh;
 }
 
 .vermelho {
@@ -75,13 +76,14 @@ h1 {
 
 .btn-full {
     box-shadow: 0 0 1em black;
+    width: -moz-available;
     width: -webkit-fill-available;
     border-radius: 5px;
 }
 
 .footer {
     text-align: center;
-    font-size: 15px;
+    font: 12pt Arial;
     color: white;
     background-color: rgba(39,55,71,0.4);
     backdrop-filter: blur(10px);
@@ -90,18 +92,18 @@ h1 {
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    width: 650px;
-    height: 25px;
+    width: 66vh;
+    height: 2.5510204081632653vh;
     box-shadow: 0 2px 1em black;
     border-radius: 0 0 10px 10px;
 }
 
 .btn-size-110 {
-    width: 110px;
+    width: 60vh;
 }
 
 .btn-sm {
-    margin-bottom: 15px;
+    margin-bottom: 1.530612244897959vh;
 }
 
 .shadow-border {
@@ -110,11 +112,11 @@ h1 {
 }
 
 .btn-board {
-    width: 62px;
-    height: 52px;
-    margin-top: 11px;
-    margin-left: 1px;
-    font-size: 30px;
+    width: 6.326530612244898vh;
+    height: 5.3061224489795915vh;
+    margin-top: 1.1224489795918366vh;
+    margin-left: 0.10204081632653061vh;
+    font-size: 3.061224489795918vh;
     background-color: transparent;
     border-color: transparent;
 }

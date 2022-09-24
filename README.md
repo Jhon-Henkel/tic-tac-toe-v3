@@ -1,5 +1,6 @@
 # Jogo da velha Versão 3
-Nesta versão, temos uma repaginada no visual, organização de código, armazenamento de informações via banco de dados, na versão anterior era por variável de sessão.
+Nesta versão, temos uma repaginada no visual, organização de código, armazenamento de informações via banco de dados, na versão anterior o armazenamento era por variável de sessão, 
+e totalmente sem framework, totalmente em PHP e o código era mais bruto.
 
 O intuito desse projeto foi aprimorar os conhecimentos em Javascript, AngularJs e Bootstrap principalmente, que são as ferramentas que utilizo no meu serviço e tinha dificuldade. 
 Desenvolvi esse projeto utilizando HTML, CSS e JavaScript no frontend, e no backend utilizei PHP e My SQL. Como o foco desse projeto era conhecer um pouco melhor o Bootstrap e 
@@ -17,4 +18,4 @@ via rede.
 - Alterar o caminho do seu diretório em assets/js/config/configs.js
 
 # Quer ver funcionando?
-Basta clicar <a target="_blank" href="http://tictactoe.jhonhenkel.kinghost.net/">aqui</a>
+Basta clicar <a target="_blank" href="http://tictactoe.jhonhenkel.kinghost.net/">aqui</a>.

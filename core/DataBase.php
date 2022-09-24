@@ -2,14 +2,13 @@
 
 namespace core;
 
-use Exception;
 use mysqli;
 
 class DataBase
 {
-    private $conn;
+    private mysqli $conn;
 
-    private function connectDb()
+    private function connectDb(): void
     {
         try {
             $this->conn = new mysqli(
@@ -20,12 +19,10 @@ class DataBase
                 MYSQL_PORT,
                 MYSQL_SOCKET,
             );
-
-            return $this->conn;
-
-        } catch (Exception $e) {
+        } catch (\mysqli_sql_exception $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
+
     }
 
     private function disconnectDb(): void
@@ -33,23 +30,18 @@ class DataBase
         mysqli_close($this->conn);
     }
 
-    /**
-     * @throws Exception
-     */
     public function select(string $sql):  array
     {
         $sql = trim($sql);
 
         if (!preg_match('/^SELECT/i', $sql)){
-            throw new Exception('Base de dados não é do tipo SELECT');
+            throw new \mysqli_sql_exception('Base de dados não é do tipo SELECT');
         }
 
-        $this->connectDb();
-        $results = null;
-
         try {
+            $this->connectDb();
             $mysqli = $this->conn->query($sql);
-            $results = $mysqli->fetch_assoc();
+            $results = $mysqli->fetch_assoc() ?? null;
 
         }catch (\mysqli_sql_exception $e) {
             echo 'ERROR: ' . $e->getMessage();
@@ -59,9 +51,6 @@ class DataBase
         return $results;
     }
 
-    /**
-     * @throws Exception
-     */
     public function insert(string $sql): void
     {
         $sql = trim($sql);
@@ -70,9 +59,8 @@ class DataBase
             throw new \mysqli_sql_exception('Base de dados não é do tipo INSERT');
         }
 
-        $this->connectDb();
-
         try {
+            $this->connectDb();
             $this->conn->query($sql);
         } catch (\mysqli_sql_exception $e) {
             echo 'ERROR: ' . $e->getMessage();
@@ -81,21 +69,17 @@ class DataBase
         $this->disconnectDb();
     }
 
-    /**
-     * @throws Exception
-     */
     public function update(string $sql): void
     {
         $sql = trim($sql);
 
         if (!preg_match('/^UPDATE/i', $sql)){
-            throw new Exception('Base de dados não é do tipo UPDATE');
+            throw new \mysqli_sql_exception('Base de dados não é do tipo UPDATE');
         }
 
-        $this->connectDb();
-
         try {
-            $this->conn->prepare($sql);
+            $this->connectDb();
+            $this->conn->query($sql);
         } catch (\mysqli_sql_exception $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
@@ -103,16 +87,12 @@ class DataBase
         $this->disconnectDb();
     }
 
-    /**
-     * @throws Exception
-     */
     public function truncate(string $sql): void
     {
         $sql = trim($sql);
 
-        $this->connectDb();
-
         try {
+            $this->connectDb();
             $this->conn->query($sql);
         } catch (\mysqli_sql_exception $e) {
             echo 'ERROR: ' . $e->getMessage();
