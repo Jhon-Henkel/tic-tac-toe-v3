@@ -1,8 +1,8 @@
 html {
-    font: 2vh Arial;
+    font: 2.4vh Arial;
     box-sizing: border-box;
     padding: 0;
-    margin: 0;
+    margin: auto;
 }
 
 .content-body {
@@ -10,33 +10,16 @@ html {
     background-size: cover;
 }
 
-.content::before {
-    content: "## Jogo da velha ##";
-    font: 10pt Arial;
-    font-weight: bold;
-    color: white;
-    background-color: rgba(39,55,71,0.4);
-    backdrop-filter: blur(1.0204081632653061vh);
-    -webkit-backdrop-filter: blur(1.0204081632653061vh);
-    padding: 0.5102040816326531vh;
-    display: block;
-    position: relative;
-    top: -1.0204081632653061vh;
-    left: -1.0204081632653061vh;
-    width: 66vh;
-    border-radius: 10px 10px 0 0;
-    box-shadow: 0 0 1em black;
-}
-
 .content {
     background-color: rgba(255,255,255,0.2);
-    backdrop-filter: blur(1.0204081632653061vh);
+    backdrop-filter: blur(1vh);
     -webkit-backdrop-filter: blur(1.0204081632653061vh);
-    margin: 9.183673469387756vh auto 0 auto;
-    padding: 1.0204081632653061vh;
-    width: 66vh;
-    height:55vh;
-    border-radius: 1.0204081632653061vh 1.0204081632653061vh 0 0;
+    margin: 18vh auto 0 auto;
+    top: 3vh;
+    padding: 1vh;
+    height:auto;
+    max-width: 70vh;
+    border-radius: 10px 10px 0 0;
     box-shadow: 0 0 1em black;
 }
 
@@ -64,9 +47,9 @@ h1 {
 .background-grid {
     background-image: url("../images/grade.png");
     background-size: cover;
-    height: 22.040816326530614vh;
-    width: 23.877551020408163vh;
-    margin-left: 20.408163265306122vh;
+    height: 30vh;
+    width: 30vh;
+    margin: auto;
 }
 
 .vermelho {
@@ -92,7 +75,7 @@ h1 {
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    width: 66vh;
+    max-width: 70vh;
     height: 2.5510204081632653vh;
     box-shadow: 0 2px 1em black;
     border-radius: 0 0 10px 10px;
@@ -112,11 +95,11 @@ h1 {
 }
 
 .btn-board {
-    width: 6.326530612244898vh;
-    height: 5.3061224489795915vh;
-    margin-top: 1.1224489795918366vh;
-    margin-left: 0.10204081632653061vh;
-    font-size: 3.061224489795918vh;
+    width: 7.2vh;
+    height: 8.5vh;
+    margin-top: 0.5vh;
+    font-size: 50px;
+    align-content: center;
     background-color: transparent;
     border-color: transparent;
 }
