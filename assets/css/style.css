@@ -98,7 +98,7 @@ h1 {
     width: 7.2vh;
     height: 8.5vh;
     margin-top: 0.5vh;
-    font-size: 50px;
+    max-font-size: 50px;
     align-content: center;
     background-color: transparent;
     border-color: transparent;

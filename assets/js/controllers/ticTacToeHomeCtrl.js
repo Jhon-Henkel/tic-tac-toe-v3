@@ -11,6 +11,10 @@ ticTacToe.controller("ticTacToeHomeCtrl", function ($scope, $http, $location, co
             $scope.game.init = configs.randCode;
         }
 
+        if (!$scope.game.difficulty || $scope.game.difficulty === "") {
+            $scope.game.difficulty = configs.mediumCode;
+        }
+
         $http.post(configs.coreDefaultPath + 'controllers/gameStartController.php', game).then(function () {
             if ($scope.game.player === configs.singlePlayer){
                 $location.path('/single-player');
