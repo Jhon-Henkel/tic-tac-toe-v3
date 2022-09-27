@@ -18,7 +18,6 @@
         }
     ],
     "require": {
-        "kint-php/kint": "^4.1",
-        "ext-mysqli": "*"
+        "kint-php/kint": "^4.1"
     }
 }
