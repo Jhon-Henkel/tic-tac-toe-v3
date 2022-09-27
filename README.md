@@ -15,9 +15,9 @@ Em uma versão futura, pretendo colocar testes unitários, rotas do backend pelo
 via rede.
 
 # Como usar:
-- Para criar a base de dados e as tabelas necessárias tem um arquivo com as queries em alters/alters.sql onde você pode copiar as queries e executar em seu bando de dados.
-- Alterar o valor das constantes relacionadas ao banco de dados contidas no arquivo config.php na raiz desse projeto.
-- Alterar o caminho do seu diretório em assets/js/config/configs.js
+- Para criar a base de dados e as tabelas necessárias tem um arquivo com as queries em <strong>alters/alters.sql</strong> onde você pode copiar as queries e executar em seu bando de dados.
+- Alterar o valor das constantes relacionadas ao banco de dados contidas no arquivo <strong>config.php</strong> na raiz desse projeto.
+- Alterar o caminho do seu diretório em <strong>assets/js/config/configs.js</strong>
 - Rodar os comandos <strong>composer update</strong> e <strong>npm update</strong> na pasta do projeto para atualizar as bibliotecas.
 - Para rodar os testes, usar o comando <strong>karma start</strong> na raiz do projeto.
 
