@@ -1,4 +1,4 @@
-ticTacToe.factory("playServices", function ($http, configs) {
+ticTacToe.factory("playServices", function (configs) {
 
     function _getDifficulty(difficulty) {
         switch (difficulty) {
