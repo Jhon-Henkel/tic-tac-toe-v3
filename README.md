@@ -16,10 +16,18 @@ via rede.
 
 # Como usar:
 - Para criar a base de dados e as tabelas necessárias tem um arquivo com as queries em alters/alters.sql onde você pode copiar as queries e executar em seu bando de dados.
-
 - Alterar o valor das constantes relacionadas ao banco de dados contidas no arquivo config.php na raiz desse projeto.
-
 - Alterar o caminho do seu diretório em assets/js/config/configs.js
+- Rodar os comandos <strong>composer update</strong> e <strong>npm update</strong> na pasta do projeto para atualizar as bibliotecas.
+- Para rodar os testes, usar o comando <strong>karma start</strong> na raiz do projeto.
 
 # Quer ver funcionando?
 Basta clicar <a target="_blank" href="http://tictactoe.jhonhenkel.kinghost.net/">aqui</a>.
+
+# Principais bibliotecas
+- AngularJS Routes
+- Bootstrap 5
+- AngularJS
+- Jasmine
+- Karma
+- Kint

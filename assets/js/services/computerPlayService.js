@@ -1,4 +1,4 @@
-ticTacToe.factory("computerPlay", function ($http, configs, boardServices) {
+ticTacToe.factory("computerPlay", function (configs, boardServices) {
 
     var ia = false;
 
