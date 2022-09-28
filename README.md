@@ -26,6 +26,7 @@ Basta clicar <a target="_blank" href="http://tictactoe.jhonhenkel.kinghost.net/"
 
 # Principais bibliotecas
 - AngularJS Routes
+- Font-awesome
 - Bootstrap 5
 - AngularJS
 - Jasmine
