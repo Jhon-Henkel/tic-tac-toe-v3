@@ -22,7 +22,7 @@ via rede.
 - Para rodar os testes, usar o comando <strong>karma start</strong> na raiz do projeto.
 
 # Quer ver funcionando?
-Basta clicar <a target="_blank" href="http://tictactoe.jhonhenkel.kinghost.net/">aqui</a>.
+Basta clicar <a target="_blank" href="https://tictactoe.jhon.dev.br">aqui</a>.
 
 # Principais bibliotecas
 - AngularJS Routes
